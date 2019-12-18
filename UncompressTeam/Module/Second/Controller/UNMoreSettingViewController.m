@@ -6,7 +6,7 @@
 //  Copyright © 2019 ghostlord. All rights reserved.
 //
 
-#import "UNSettingViewController.h"
+#import "UNMoreSettingViewController.h"
 #import "UNiTunesDownloadViewController.h"
 #import "UNWiFiTransmitViewController.h"
 #import "UNiCloudManager.h"
@@ -15,13 +15,13 @@
 #import "SecondHeaderView.h"
 #import "UNWatchMovieOnlineViewController.h"
 #import "UNSettingViewController.h"
-@interface UNSettingViewController ()<UITableViewDelegate, UITableViewDataSource,UIDocumentPickerDelegate>
+@interface UNMoreSettingViewController ()<UITableViewDelegate, UITableViewDataSource,UIDocumentPickerDelegate>
 @property (nonatomic,strong) UITableView *myTableView;
 @property (nonatomic,copy) NSArray *nameArray;
 @property (nonatomic ,strong) NSArray *imgArr;
 @end
 
-@implementation UNSettingViewController
+@implementation UNMoreSettingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

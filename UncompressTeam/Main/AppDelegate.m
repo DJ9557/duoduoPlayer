@@ -41,13 +41,35 @@
 }
 
 - (void)addDefaultFile{
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"zip"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    [data writeToFile:[DocumentsPath stringByAppendingPathComponent:@"demo.zip"] atomically:YES];
-    
-    
-    NSData *data1 = [@"hello world" dataUsingEncoding:NSUTF8StringEncoding];
-    [data1 writeToFile:[DocumentsPath stringByAppendingPathComponent:@"demo.txt"] atomically:YES];
+ 
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isFirst"] integerValue]==0) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"zip"];
+         NSData *data = [NSData dataWithContentsOfFile:filePath];
+         [data writeToFile:[DocumentsPath stringByAppendingPathComponent:@"demo.zip"] atomically:YES];
+         
+         NSData *data1 = [@"hello world" dataUsingEncoding:NSUTF8StringEncoding];
+         [data1 writeToFile:[DocumentsPath stringByAppendingPathComponent:@"demo.txt"] atomically:YES];
+         for (int i =1; i < 3;i ++) {
+             NSString *fileName = [NSString stringWithFormat:@"示例视频%d",i];
+             NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"mp4"];
+             NSData *showData = [NSData dataWithContentsOfFile:filePath];
+             if ([showData writeToFile:[DocumentsPath stringByAppendingPathComponent:[fileName stringByAppendingString:@".mp4"]] atomically:YES]) {
+             }
+         }
+         
+         NSString *filePath2 = [[NSBundle mainBundle] pathForResource:@"iTunes传输教程" ofType:@"png"];
+         NSData *showPictureData = [NSData dataWithContentsOfFile:filePath2];
+         if ([showPictureData writeToFile:[DocumentsPath stringByAppendingPathComponent:@"iTunes传输教程.png"] atomically:YES]) {
+         }
+         
+         NSString *txtFilePath = [[NSBundle mainBundle] pathForResource:@"示例文档" ofType:@"txt"];
+         NSData *showTxtData = [NSData dataWithContentsOfFile:txtFilePath];
+         if ([showTxtData writeToFile:[DocumentsPath stringByAppendingPathComponent:@"示例文档.txt"] atomically:YES]) {
+         }
+         NSUserDefaults *user =  [NSUserDefaults standardUserDefaults];
+         [user setInteger:1 forKey:@"isFirst"];
+         [user synchronize];
+     }
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {

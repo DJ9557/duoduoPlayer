@@ -7,7 +7,7 @@
 //
 
 #import "AboutUsViewController.h"
-
+#import "Current_WebViewController.h"
 @interface AboutUsViewController ()
 
 @end
@@ -19,6 +19,10 @@
     self.title = @"关于我们";
     self.view.backgroundColor = ASOColorBackGround;
 
+}
+- (IBAction)pushProtol:(id)sender {
+    Current_WebViewController *web = [[Current_WebViewController alloc] init];
+    [self.navigationController pushViewController:web animated:YES];
 }
 - (IBAction)dismiss:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

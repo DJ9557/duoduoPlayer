@@ -61,6 +61,16 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-pH-rHp">
+                    <rect key="frame" x="173" y="818" width="68" height="26"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" title="用户使用协议">
+                        <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="pushProtol:" destination="-1" eventType="touchUpInside" id="hl3-XI-JQ1"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -68,7 +78,9 @@
                 <constraint firstItem="4BF-fg-MAW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Cui-QG-Ski"/>
                 <constraint firstItem="vgQ-pw-Tm7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DrV-qk-r2F"/>
                 <constraint firstItem="w4o-We-ZO3" firstAttribute="centerX" secondItem="vgQ-pw-Tm7" secondAttribute="centerX" id="GIN-pu-bgU"/>
+                <constraint firstItem="Pb8-pH-rHp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="L8e-tj-f7W"/>
                 <constraint firstItem="ufa-BI-cuv" firstAttribute="top" secondItem="w4o-We-ZO3" secondAttribute="bottom" constant="45" id="MCV-zB-8DF"/>
+                <constraint firstItem="Pb8-pH-rHp" firstAttribute="top" secondItem="4BF-fg-MAW" secondAttribute="bottom" constant="10" id="fvI-Wn-zJ9"/>
                 <constraint firstItem="vgQ-pw-Tm7" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="35" id="h47-2r-5u5"/>
                 <constraint firstItem="w4o-We-ZO3" firstAttribute="top" secondItem="vgQ-pw-Tm7" secondAttribute="bottom" constant="20" id="i23-EZ-AIN"/>
                 <constraint firstItem="96j-Ns-QEO" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="15" id="klo-qX-RNy"/>

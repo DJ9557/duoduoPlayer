@@ -11,7 +11,7 @@
 #import "UNFileCollectionViewController.h"
 #import "UNShowTypePopViewController.h"
 #import "AppDelegate.h"
-#import "UNSettingViewController.h"
+#import "UNMoreSettingViewController.h"
 #import "UNFileSystemHandle.h"
 #import "UNCollectionViewCell.h"
 #import "UNFileManagerTool.h"
@@ -108,6 +108,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (collectionController) {
+        [collectionController reloadData];
+    }
     appDelegate.viewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 1];
     [collectionController.collectionView reloadData];
 }
@@ -219,7 +222,7 @@
 #pragma mark  push设置界面
 - (void)pushSetting
 {
-    UNSettingViewController *second = [[UNSettingViewController alloc] init];
+    UNMoreSettingViewController *second = [[UNMoreSettingViewController alloc] init];
     second.hidesBottomBarWhenPushed = YES;
 //    CATransition* transition = [CATransition animation];
 //    transition.type = kCATransitionPush;

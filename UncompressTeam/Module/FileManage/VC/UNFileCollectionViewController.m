@@ -111,7 +111,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     cell.sizeLab.text = model.size;
     UIImage *videoImage = [PPVideo_VideoManager getScreenShotImageFromVideoPath:model.urlPath];
     cell.imageV.clipsToBounds = YES;
-//    cell.model = model;
+    cell.model = model;
    if ([model.iconName isEqualToString:@MP4]) {
           cell.imageV.image = videoImage;
           cell.imageV.contentMode = UIViewContentModeScaleAspectFill;
@@ -155,6 +155,8 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    CellModel *model = self.dataArr[indexPath.row];
+
     if (self.isEditing) {
         self.selectedNum++;
         if (self.selectedNum == self.dataArr.count) {
@@ -169,13 +171,13 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         }
     } else {
         //点击打开文件
-        NSURL *url = [NSURL fileURLWithPath:self.dataArr[[indexPath row]][@"path"]];
+        NSURL *url = [NSURL fileURLWithPath:model.urlPath];
         //打开文件夹
-        if ([self.dataArr[[indexPath row]][@"iconName"] isEqualToString:@FOLDER]) {
-            [appDelegate.viewController enterFolder:self.dataArr[[indexPath row]][@"path"] fileName:self.dataArr[[indexPath row]][@"name"]];
+        if ([model.iconName isEqualToString:@FOLDER]) {
+            [appDelegate.viewController enterFolder:model.urlPath fileName:model.name];
             return;
         }
-        if ([self.dataArr[[indexPath row]][@"iconName"] isEqualToString:@MP3] || [self.dataArr[[indexPath row]][@"iconName"] isEqualToString:@MP4]) {
+        if ([model.iconName isEqualToString:@MP3] || [model.iconName isEqualToString:@MP4]) {
                 AVPlayerViewController *playerViewController = [[AVPlayerViewController alloc] init];
                 playerViewController.player = [AVPlayer playerWithURL:url];
                 //可播放可录音，更可以后台播放，还可以在其他程序播放的情况下暂停播放(自动判断耳机或公放)

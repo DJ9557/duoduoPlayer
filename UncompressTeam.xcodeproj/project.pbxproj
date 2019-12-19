@@ -119,6 +119,7 @@
 		048E3C2E23AA3791004C2DD5 /* 示例视频2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 048E3C2A23AA3791004C2DD5 /* 示例视频2.mp4 */; };
 		048E3C3123AA3D17004C2DD5 /* Current_WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E3C3023AA3D17004C2DD5 /* Current_WebViewController.m */; };
 		048E3C3E23AA3D52004C2DD5 /* server.html in Resources */ = {isa = PBXBuildFile; fileRef = 048E3C3D23AA3D52004C2DD5 /* server.html */; };
+		048E3C5923AB8D34004C2DD5 /* PPVideo_VideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E3C5723AB8D33004C2DD5 /* PPVideo_VideoManager.m */; };
 		04B2C571238230760049F5F0 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B2C56F238230760049F5F0 /* UIBarButtonItem+Extension.m */; };
 		04B2C5A023851D0C0049F5F0 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 04B2C59E23851D0C0049F5F0 /* index.html */; };
 		04B2C5A123851D0C0049F5F0 /* upload.html in Resources */ = {isa = PBXBuildFile; fileRef = 04B2C59F23851D0C0049F5F0 /* upload.html */; };
@@ -367,6 +368,8 @@
 		048E3C2F23AA3D17004C2DD5 /* Current_WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Current_WebViewController.h; sourceTree = "<group>"; };
 		048E3C3023AA3D17004C2DD5 /* Current_WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Current_WebViewController.m; sourceTree = "<group>"; };
 		048E3C3D23AA3D52004C2DD5 /* server.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = server.html; sourceTree = "<group>"; };
+		048E3C5723AB8D33004C2DD5 /* PPVideo_VideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPVideo_VideoManager.m; sourceTree = "<group>"; };
+		048E3C5823AB8D34004C2DD5 /* PPVideo_VideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPVideo_VideoManager.h; sourceTree = "<group>"; };
 		04B2C56F238230760049F5F0 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		04B2C570238230760049F5F0 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		04B2C59E23851D0C0049F5F0 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
@@ -987,6 +990,8 @@
 		04D4CEFF238D27B600B9E3D8 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				048E3C5823AB8D34004C2DD5 /* PPVideo_VideoManager.h */,
+				048E3C5723AB8D33004C2DD5 /* PPVideo_VideoManager.m */,
 				04D4CF00238D27B600B9E3D8 /* DataModel.h */,
 				04D4CF02238D27B600B9E3D8 /* DataModel.m */,
 				04D4CF05238D27B600B9E3D8 /* CellModel.h */,
@@ -1209,6 +1214,7 @@
 				042F9B562284271500FF7F72 /* NSString+Attribute.m in Sources */,
 				047C54C8238F841500029E36 /* UNSMBFileTootListViewController.m in Sources */,
 				04D4CF0F238D27B600B9E3D8 /* FileIcon.m in Sources */,
+				048E3C5923AB8D34004C2DD5 /* PPVideo_VideoManager.m in Sources */,
 				04344115236006BD001CF8C2 /* LYTBaseViewController.m in Sources */,
 				0434410C236006BD001CF8C2 /* YYhelp.m in Sources */,
 				04B2C571238230760049F5F0 /* UIBarButtonItem+Extension.m in Sources */,

@@ -26,11 +26,10 @@
 
 @interface UNCollectionViewCell ()
 
-@property (nonatomic, strong) UIImageView *imageV;
+
 @property (nonatomic, strong) UIImageView *selecedIcon;
 @property (nonatomic, strong) UIImageView *unselecedIcon;
-@property (nonatomic, strong) UILabel *createTimeLab;
-@property (nonatomic, strong) UILabel *sizeLab;
+
 
 @end
 

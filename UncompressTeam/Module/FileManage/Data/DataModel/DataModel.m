@@ -8,7 +8,7 @@
 
 #import "DataModel.h"
 #import "FileIcon.h"
-
+#import "CellModel.h"
 #define FOLDER "ico_small_folder"
 
 @implementation DataModel
@@ -35,7 +35,7 @@
                 NSDate *theModifiDate;
                 if ((theModifiDate = [attributes objectForKey:NSFileModificationDate])) {
                     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+                    [formatter setDateFormat:@"HH:mm:ss"];
                     NSString *dateStr = [formatter stringFromDate:theModifiDate];
                     NSFileManager *manager = [NSFileManager defaultManager];
                     long long size = 0;
@@ -59,8 +59,14 @@
                         [dirEnumerater skipDescendants];
                         priority = [NSNumber numberWithInt:1];
                     }
-                    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:iconName, @"iconName", fileNameStr, @"name", filePath, @"path", dateStr, @"time", [self transformedValue:size], @"size", [NSNumber numberWithLongLong:size], @"noTransformedSize", priority, @"priority", nil];
-                    [self.dataSource addObject:dic];
+                    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:iconName, @"iconName", fileNameStr, @"name", filePath,@"urlPath",msgdir, @"path", dateStr, @"time", [self transformedValue:size], @"size", [NSNumber numberWithLongLong:size], @"noTransformedSize", priority, @"priority", nil];
+                    CellModel *model = [[CellModel alloc] init];
+                    model.size = dic[@"size"];
+                    model.urlPath = dic[@"urlPath"];
+                    model.createTime = dic[@"time"];
+                    model.iconName = dic[@"iconName"];
+                    model.name = dic[@"name"];
+                    [self.dataSource addObject:model];
                 }
             }
         }

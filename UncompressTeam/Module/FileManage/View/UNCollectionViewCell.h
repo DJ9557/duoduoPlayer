@@ -19,5 +19,7 @@
 @property (nonatomic, assign) BOOL isEditing;//0:不在编辑状态,1:在编辑状态
 
 @property (nonatomic, strong) CellModel *model;//cell中元素数据源
-
+@property (nonatomic, strong) UIImageView *imageV;
+@property (nonatomic, strong) UILabel *createTimeLab;
+@property (nonatomic, strong) UILabel *sizeLab;
 @end

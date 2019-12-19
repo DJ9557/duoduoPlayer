@@ -11,7 +11,7 @@
 #import "CellModel.h"
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
-
+#import "PPVideo_VideoManager.h"
 #define MP3 "ico_small_mp3"
 #define MP4 "ico_small_mov"
 #define FOLDER "ico_small_folder"
@@ -21,7 +21,6 @@
 {
     DataModel *dataModel;
     AppDelegate *appDelegate;
-    CellModel *model;
     UICollectionViewFlowLayout *flowlayout;
 }
 @end
@@ -74,7 +73,6 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     self.isEditing = NO;
     self.selectedNum = 0;
     dataModel = [[DataModel alloc] initWithPath:self.filePath];
-    model = [[CellModel alloc] init];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if (dataModel.dataSource) {
         for (int i = 0; i< dataModel.dataSource.count; i++){
@@ -86,7 +84,6 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 -(void)reloadData
 {
      dataModel = [[DataModel alloc] initWithPath:self.filePath];
-     model = [[CellModel alloc] init];
      if (dataModel.dataSource) {
          if (self.dataArr.count) {
              [self.dataArr removeAllObjects];
@@ -107,10 +104,25 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CellModel *model = self.dataArr[indexPath.row];
     UNCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    [model setData:self.dataArr[[indexPath row]][@"iconName"] name:self.dataArr[[indexPath row]][@"name"] createTime:self.dataArr[[indexPath row]][@"time"] size:self.dataArr[[indexPath row]][@"size"]];
-    cell.model = model;
-    //根据展示的type不同，改变元素布局
+     cell.nameLab.text = model.name;
+    cell.createTimeLab.text = model.createTime;
+    cell.sizeLab.text = model.size;
+    UIImage *videoImage = [PPVideo_VideoManager getScreenShotImageFromVideoPath:model.urlPath];
+    cell.imageV.clipsToBounds = YES;
+//    cell.model = model;
+   if ([model.iconName isEqualToString:@MP4]) {
+          cell.imageV.image = videoImage;
+          cell.imageV.contentMode = UIViewContentModeScaleAspectFill;
+          cell.imageV.hidden = NO;
+      }
+      else
+      {
+          cell.imageV.hidden = YES;
+          cell.imageV.contentMode = UIViewContentModeScaleToFill;
+          cell.imageV.image = [UIImage imageNamed:model.iconName];
+      }
     cell.isCell = self.isCell;
     cell.isEditing = self.isEditing;
     cell.backgroundColor = [UIColor whiteColor];

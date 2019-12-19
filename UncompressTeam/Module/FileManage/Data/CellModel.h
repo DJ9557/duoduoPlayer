@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) NSString *size;//文件大小
 
-- (void)setData: (NSString *)iconName name: (NSString *)name createTime: (NSString *)createTime size: (NSString *)size;//给每一个cell设置具体数据
+@property (nonatomic ,strong) NSString *urlPath;
+
 
 @end

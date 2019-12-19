@@ -18,6 +18,9 @@
 #define BLUECOLOR [UIColor colorWithDisplayP3Red:51/255.0 green:171/255.0 blue:238/255.0 alpha:1]
 #import "UNFileManagerTool.h"
 #import "FileIcon.h"
+#define MP3 "ico_small_mp3"
+#define MP4 "ico_small_mov"
+#define FOLDER "ico_small_folder"
 @interface UNMainFileManageViewController () <ShowTypePopViewControllerDelegate, UIPopoverPresentationControllerDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate>
 {
     UICollectionViewFlowLayout *flowlayout;
@@ -204,9 +207,10 @@
 }
 
 -(void)configToolBar {
-    [self.navigationController setToolbarHidden:NO animated:YES];
+    [self.navigationController setToolbarHidden:NO animated:NO];
     self.navigationController.toolbar.barTintColor = [UIColor whiteColor];
-    self.navigationController.toolbar.tintColor = ASOColorTheme;
+    self.navigationController.toolbar.tintColor = [UIColor colorWithHexString:@"0x5fa6f8"];
+;
     spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     listBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"liebiao"] style:UIBarButtonItemStylePlain target:self action:@selector(pop:)];
     listBtn.tag = 0;

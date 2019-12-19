@@ -112,14 +112,13 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     UIImage *videoImage = [PPVideo_VideoManager getScreenShotImageFromVideoPath:model.urlPath];
     cell.imageV.clipsToBounds = YES;
     cell.model = model;
-   if ([model.iconName isEqualToString:@MP4]) {
+   if ([model.iconName isEqualToString:@MP4]||[model.iconName isEqualToString:@MP3]) {
           cell.imageV.image = videoImage;
           cell.imageV.contentMode = UIViewContentModeScaleAspectFill;
           cell.imageV.hidden = NO;
       }
       else
       {
-          cell.imageV.hidden = YES;
           cell.imageV.contentMode = UIViewContentModeScaleToFill;
           cell.imageV.image = [UIImage imageNamed:model.iconName];
       }

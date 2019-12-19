@@ -47,13 +47,15 @@
 - (void)initView {
     //文件图片icon名
     _imageV = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _imageV.layer.masksToBounds = YES;
+    _imageV.layer.cornerRadius = 5;
     [self.contentView addSubview:_imageV];
 
     //文件大小
        _sizeLab = [[UILabel alloc] initWithFrame:CGRectZero];
        _sizeLab.numberOfLines = 0;
        _sizeLab.font = [UIFont systemFontOfSize:13];
-       _sizeLab.textColor = [UIColor grayColor];
+       _sizeLab.textColor = TextColor;
        [self.contentView addSubview:_sizeLab];
     //文件名
     _nameLab = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -167,34 +169,34 @@
 
 //未选中状态下样式
 - (void)normalAlphaUI {
-    _imageV.alpha = 1;
-    _nameLab.textColor = [UIColor blackColor];
-    _createTimeLab.textColor = [UIColor grayColor];
-    _sizeLab.textColor = [UIColor grayColor];
-    _selecedIcon.frame = CGRectZero;
-    _unselecedIcon.frame = CGRectZero;
+//    _imageV.alpha = 1;
+//    _nameLab.textColor = [UIColor blackColor];
+//    _createTimeLab.textColor = [UIColor grayColor];
+//    _sizeLab.textColor = [UIColor grayColor];
+//    _selecedIcon.frame = CGRectZero;
+//    _unselecedIcon.frame = CGRectZero;
 }
 
 //选中状态下样式
 - (void)halfAlphaUI {
-    _imageV.alpha = 0.85;
-    _nameLab.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.85];
-    _createTimeLab.textColor = [[UIColor grayColor] colorWithAlphaComponent:0.85];
-    _sizeLab.textColor = [[UIColor grayColor] colorWithAlphaComponent:0.85];
-    _selecedIcon.frame = CGRectZero;
-    _unselecedIcon.frame = CGRectZero;
+//    _imageV.alpha = 0.85;
+//    _nameLab.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.85];
+//    _createTimeLab.textColor = [[UIColor grayColor] colorWithAlphaComponent:0.85];
+//    _sizeLab.textColor = [[UIColor grayColor] colorWithAlphaComponent:0.85];
+//    _selecedIcon.frame = CGRectZero;
+//    _unselecedIcon.frame = CGRectZero;
 }
 
 //高亮效果
 - (void)setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
-    if (highlighted) {
-        self.contentView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
-    } else {
-        [UIView animateWithDuration:0.1 delay:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.contentView.backgroundColor = [UIColor whiteColor];
-        } completion:nil];
-    }
+//    if (highlighted) {
+//        self.contentView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
+//    } else {
+//        [UIView animateWithDuration:0.1 delay:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//            self.contentView.backgroundColor = [UIColor whiteColor];
+//        } completion:nil];
+//    }
 }
 
 @end

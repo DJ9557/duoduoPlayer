@@ -17,6 +17,7 @@
 #import "UNFileManagerTool.h"
 #define BLUECOLOR [UIColor colorWithDisplayP3Red:51/255.0 green:171/255.0 blue:238/255.0 alpha:1]
 #import "UNFileManagerTool.h"
+#import "CellModel.h"
 #import "FileIcon.h"
 #define MP3 "ico_small_mp3"
 #define MP4 "ico_small_mov"
@@ -38,8 +39,6 @@
     UIBarButtonItem *deleteBarBtn;
     UIBarButtonItem *zipBtn;
     UIBarButtonItem *saveBtn;
-    GADBannerView *_bannerAdView;
-    
     AppDelegate *appDelegate;
     BOOL isDirectoryFirst;//是否勾选目录优先
     BOOL isDesc;//是否升序
@@ -48,8 +47,6 @@
 }
 @property (nonatomic ,strong) UISegmentedControl *segmentedControl;
 
-/// 插屏广告
-@property (nonatomic, strong) GADInterstitial *Interstitial;
 @end
 
 @implementation UNMainFileManageViewController
@@ -65,49 +62,8 @@
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     isDirectoryFirst = false;
     isDesc = true;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paymentSuccess) name:@"paySuccess" object:nil];
-    if (![[PayHelp sharePayHelp] isApplePay]) {
-          [self addAdViews];
-      }
-}
 
-- (void)paymentSuccess{
-    [_bannerAdView removeFromSuperview];
-    self.Interstitial = nil;
 }
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
-    if ([self.Interstitial isReady]) {
-        [self.Interstitial presentFromRootViewController:self];
-    }
-}
-
-- (void)addAdViews{
-    //加载广告
-    _bannerAdView = [[GADBannerView alloc] init];
-    _bannerAdView.adUnitID = BaseADAPPID;
-    _bannerAdView.rootViewController = self;
-    
-    GADRequest *request = [GADRequest request];
-    GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers = @[kGADSimulatorID];
-    
-    [_bannerAdView loadRequest:request];
-    [self.view addSubview:_bannerAdView];
-    [self.view bringSubviewToFront:_bannerAdView];
-    
-    [_bannerAdView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.equalTo(self.view);
-        make.height.equalTo(@50);
-    }];
-    
-    //插屏广告
-    self.Interstitial = [[GADInterstitial alloc] initWithAdUnitID:BaseADAPPID];
-    GADRequest *request1 = [GADRequest request];
-    GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers = @[kGADSimulatorID];
-    [self.Interstitial loadRequest:request1];
-}
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -132,12 +88,12 @@
 -(void)initSegContolView
 {
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"默认", @"名称",@"大小",@"日期",@"类型"]];
-    self.segmentedControl.frame = CGRectMake(10, 5 , SCREEN_Width-20, 40);
-    NSDictionary *norDic = [NSDictionary dictionaryWithObjectsAndKeys:ASOColorTheme,NSForegroundColorAttributeName,[UIFont systemFontOfSize:14],NSFontAttributeName ,nil];
-    //    self.segmentedControl.layer.masksToBounds = YES;
-    //    self.segmentedControl.layer.borderColor = ASOColorTheme.CGColor;
-    //    self.segmentedControl.layer.borderWidth = 1;
-    [self.segmentedControl setTitleTextAttributes:norDic forState:UIControlStateNormal];
+    self.segmentedControl.frame = CGRectMake(0, 5 , SCREEN_Width, 40);
+    self.segmentedControl.backgroundColor = APPGrayColor;
+    NSDictionary *norDic = [NSDictionary dictionaryWithObjectsAndKeys:ASOColorTheme,NSForegroundColorAttributeName,[UIFont systemFontOfSize:16],NSFontAttributeName ,nil];
+    NSDictionary *SelDic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor grayColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:14],NSFontAttributeName ,nil];
+    [self.segmentedControl setTitleTextAttributes:SelDic forState:UIControlStateNormal];
+    [self.segmentedControl setTitleTextAttributes:norDic forState:UIControlStateSelected];
     self.segmentedControl.selectedSegmentIndex = 0;
     [self.segmentedControl addTarget:self action:@selector(selectItem:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.segmentedControl];
@@ -174,16 +130,14 @@
     {
         CGPoint point = [longPressGesture locationInView:collectionController.collectionView];
         NSIndexPath *currentIndexPath = [collectionController.collectionView indexPathForItemAtPoint:point];
-        NSString *nameStr = dataArr[currentIndexPath.row][@"name"];
-        NSString *pathStr = dataArr[currentIndexPath.row][@"path"];
-        
-        [UNFileSystemHandle fileHandleAlertShowFileName:nameStr FilePath:pathStr collectionVC:collectionController withVC:self ];
+        CellModel *model = dataArr[currentIndexPath.row];
+        [UNFileSystemHandle fileHandleAlertShowFileName:model.name FilePath:model.urlPath collectionVC:collectionController withVC:self ];
     }
 }
 -(void)setNavItems {
     
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    self.navigationController.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    self.navigationController.view.backgroundColor = ASOColorTheme;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = BLUECOLOR;
@@ -192,7 +146,7 @@
     } else {
         self.navigationItem.title = @"多多播放器";
     }
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithDisplayP3Red:51/255.0 green:171/255.0 blue:238/255.0 alpha:1], NSForegroundColorAttributeName, nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:ASOColorTheme, NSForegroundColorAttributeName, nil]];
     [self.navigationItem setHidesBackButton:YES];
     editBtn = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(pushEditView)];
     self.navigationItem.rightBarButtonItem = editBtn;
@@ -327,8 +281,8 @@
     self.navigationItem.title = @"选择项目";
     if ([str isEqualToString:@"删除"]) {
         [collectionController.dataArr removeObjectsInArray:collectionController.selectedArr];
-        for (NSDictionary *dic in collectionController.selectedArr) {
-            [[UNFileManagerTool sharedManagerTool] deleteFileAtFilePath:dic[@"path"]];
+        for (CellModel *model in collectionController.selectedArr) {
+            [[UNFileManagerTool sharedManagerTool] deleteFileAtFilePath:model.urlPath];
         }
         [collectionController.selectedArr removeAllObjects];
         [collectionController.collectionView  selectItemAtIndexPath:nil animated:NO scrollPosition:UICollectionViewScrollPositionNone];
@@ -337,9 +291,9 @@
     }
     else if ([str isEqualToString:@"复制"])
     {
-        for (NSDictionary *dic in collectionController.selectedArr) {
-            NSString *fileName = dic[@"name"];
-            NSString *path = dic[@"path"];
+        for (CellModel *model in collectionController.selectedArr) {
+            NSString *fileName = model.name;
+            NSString *path = model.urlPath;
             //拷贝文件夹
             if ([[UNFileManagerTool sharedManagerTool] directoryIsExist:fileName]) {
                 NSString *newName = [fileName stringByAppendingString:@"(副本)"];//新的文件名
@@ -361,9 +315,9 @@
     }
     else if ([str isEqualToString:@"压缩"])
     {
-        for (NSDictionary *dic in collectionController.selectedArr) {
-            NSString *fileName = dic[@"name"];
-            NSString *path = dic[@"path"];
+        for (CellModel *model in collectionController.selectedArr) {
+            NSString *fileName = model.name;
+            NSString *path = model.urlPath;
             
             //仅支持zip格式压缩
             NSInteger fileIndex = 0;
@@ -389,8 +343,8 @@
         BOOL isContainOtherFile = NO;
         NSMutableArray *saveImageArray = [NSMutableArray array];
         
-        for (NSDictionary *dic in collectionController.selectedArr) {
-            NSString *path = dic[@"path"];
+        for (CellModel *model in collectionController.selectedArr) {
+            NSString *path = model.urlPath;
             NSString *fileFullName = [[path componentsSeparatedByString:@"/"] lastObject];   //文件全名
             NSString *fileExtension = [fileFullName pathExtension];  //文件后缀
             
@@ -399,7 +353,7 @@
                 isContainOtherFile = YES;
             }else{
                 //要保存到相册里的图片
-                [saveImageArray addObject:dic];
+                [saveImageArray addObject:model];
             }
         }
         
@@ -453,8 +407,8 @@
         return;
     }
     [SVProgressHUD showWithStatus:@"保存中……"];
-    for (NSDictionary *imageInfoDic in dataArray) {
-        NSString *path = imageInfoDic[@"path"];
+    for (CellModel *model in dataArray) {
+        NSString *path =model.urlPath;
         NSData *data = [NSData dataWithContentsOfFile:path];
         UIImage *image = [UIImage imageWithData:data];
         //参数1:图片对象

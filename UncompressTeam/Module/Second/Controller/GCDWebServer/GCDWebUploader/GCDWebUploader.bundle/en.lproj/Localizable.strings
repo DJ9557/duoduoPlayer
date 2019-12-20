@@ -1,0 +1,21 @@
+
+// First Page
+"PROLOGUE" = "<p>欢迎使用多多播放器文件管理平台</p>";
+"UPLOAD"        = "上传文件";
+"CREATE_FOLDER" = "创建文件夹";
+"REFRESH"       = "刷新";
+"EPILOGUE" = "";
+"FOOTER_FORMAT" = "%@ %@";
+
+// Common
+"CANCEL" = "取消";
+
+// Create Folder
+"PLEASE_ENTER_THE_NEME_OF_THE_FOLDER_TO_BE_CREATED" = "请输入要创建文件夹的名称:";
+"UNTITLED_FOLDER" = "无标题的文件夹";
+"CREATE" = "创建";
+
+// Move Item
+"MOVE_ITEM" = "移动项目";
+"PLEASE_ENTER_THE_NEW_LOCATION_FOR_THIS_ITEM" = "请输入此项目的新位置:";
+"MOVE" = "移动";

@@ -35,7 +35,7 @@
                 NSDate *theModifiDate;
                 if ((theModifiDate = [attributes objectForKey:NSFileModificationDate])) {
                     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                    [formatter setDateFormat:@"HH:mm:ss"];
+                   [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
                     NSString *dateStr = [formatter stringFromDate:theModifiDate];
                     NSFileManager *manager = [NSFileManager defaultManager];
                     long long size = 0;
@@ -66,6 +66,7 @@
                     model.createTime = dic[@"time"];
                     model.iconName = dic[@"iconName"];
                     model.name = dic[@"name"];
+                    model.noTransformedSize = dic[@"noTransformedSize"];
                     [self.dataSource addObject:model];
                 }
             }

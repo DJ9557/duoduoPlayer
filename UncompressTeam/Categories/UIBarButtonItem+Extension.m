@@ -53,8 +53,8 @@
     }
 //    [button setTintColor:[UIColor whiteColor]];
     // 设置按钮的尺寸为背景图片的尺寸+文字大小
-    button.width = button.currentImage.size.width +[title getSizeWithFont:button.titleLabel.font constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].width;
-    button.height = button.currentImage.size.height;
+//    button.width = button.currentImage.size.width +[title getSizeWithFont:button.titleLabel.font constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].width;
+//    button.height = button.currentImage.size.height;
     // 监听按钮点击
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     return [[self alloc] initWithCustomView:button];

@@ -11,8 +11,8 @@
 #import "CellModel.h"
 #import "UNFileCollectionViewController.h"
 
-#define IMAGE_WIDTH 60
-#define IMAGE_HEIGHT 60
+#define IMAGE_WIDTH 50
+#define IMAGE_HEIGHT 50
 #define NAMELAB_WIDTH self.bounds.size.width - IMAGE_WIDTH - SPACE * 4
 #define NAMELAB_HEIGHT 20
 #define TIMELAB_WIDTH 140
@@ -38,6 +38,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
         [self initView];
     }
     return self;
@@ -45,6 +46,7 @@
 
 //初始化cell元素
 - (void)initView {
+   
     //文件图片icon名
     _imageV = [[UIImageView alloc] initWithFrame:CGRectZero];
     _imageV.layer.masksToBounds = YES;
@@ -55,18 +57,19 @@
        _sizeLab = [[UILabel alloc] initWithFrame:CGRectZero];
        _sizeLab.numberOfLines = 0;
        _sizeLab.font = [UIFont systemFontOfSize:13];
-       _sizeLab.textColor = TextColor;
+    _sizeLab.textColor = TextColor;
        [self.contentView addSubview:_sizeLab];
     //文件名
     _nameLab = [[UILabel alloc] initWithFrame:CGRectZero];
     _nameLab.numberOfLines = 0;
+    _sizeLab.textColor = TextColor;
     [self.contentView addSubview:_nameLab];
 
     //文件创建时间
     _createTimeLab = [[UILabel alloc] initWithFrame:CGRectZero];
     _createTimeLab.numberOfLines = 0;
     _createTimeLab.font = [UIFont systemFontOfSize:13];
-    _createTimeLab.textColor = [UIColor grayColor];
+    _createTimeLab.textColor = TextColor;
     _createTimeLab.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_createTimeLab];
 
@@ -102,10 +105,10 @@
         } else {
             [self normalAlphaUI];
         }
-        _imageV.frame = CGRectMake((self.bounds.size.width - 60) / 2, (self.bounds.size.height - 60 - 15) / 3, 60, 60);
+        _imageV.frame = CGRectMake((self.bounds.size.width - 50) / 2, (self.bounds.size.height - 50 - 15) / 3, 50, 50);
         _nameLab.frame = CGRectMake(10, self.bounds.size.height / 3 * 2 + 5, self.bounds.size.width - 20, 15);
         _nameLab.textAlignment = NSTextAlignmentCenter;
-        _nameLab.font = [UIFont systemFontOfSize:14];
+        _nameLab.font = [UIFont systemFontOfSize:12];
         _createTimeLab.frame = CGRectZero;
         _sizeLab.frame = CGRectZero;
         _unselecedIcon.frame = CGRectZero;

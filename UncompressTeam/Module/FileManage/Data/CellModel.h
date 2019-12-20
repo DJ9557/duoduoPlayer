@@ -20,5 +20,6 @@
 
 @property (nonatomic ,strong) NSString *urlPath;
 
+@property (nonatomic ,strong) NSString *noTransformedSize;
 
 @end

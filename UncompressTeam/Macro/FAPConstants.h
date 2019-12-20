@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UIColor+DarkMode.h"
 
 /// ------- API 相关 ---------
 #define APIBaseURL_juhe                             [ASOServerManager manager].optimalServer.baseApiUrl_juhe
@@ -87,6 +86,7 @@
 // 项目中主要颜色的定义
 #define ASOColorTheme                           HexColor(0x2CB4DC)     // 主题颜色
 #define APPColor ASOColorTheme
+#define ASOColorSeg                          HexColor(0x297FF9)     // 主题颜色
 
 #define ASOColorLong                            HexColor(0x28A351)     // 上涨颜色(绿色)
 #define ASOColorShort                           HexColor(0xcc3366)     // 下跌颜色(红色)
@@ -107,11 +107,9 @@
 #define ASOColorMarketDetailsBG                 ASOColorKlineBG
 //背景透明色
 #define ASOColorAlert_BGColor                   HexAlphaColor(0x000000,0.4)
-#define GrayTextColor DYUIColor(APPGrayColor, RGBCOLOR(22, 22, 22))
-#define GrayBACKColor DYUIColor(APPGrayColor, RGBCOLOR(35, 35, 35))
 #define APPGrayColor RGBCOLOR(242, 242, 242)
 
-#define TextColor DYUIColor(RGBCOLOR(101, 101, 111), RGBCOLOR(250, 250, 250))
+#define TextColor RGBCOLOR(31, 31, 36)
 
 
 #define KBlackColor [UIColor blackColor]

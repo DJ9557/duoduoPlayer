@@ -31,11 +31,8 @@
 
 - (void)configUI {
     [self.contentView addSubview:self.timeLabel];
-    self.contentView.backgroundColor = GrayTextColor;
+    self.contentView.backgroundColor = APPGrayColor;
     [self.contentView addSubview:self.lineView];
-//    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        ma
-//    }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(0, 20, 0, 10));
     }];
@@ -53,7 +50,7 @@
 {
     if (!_lineView) {
         _lineView = [[UIView alloc] init];
-        _lineView.backgroundColor = GrayTextColor;
+        _lineView.backgroundColor = APPGrayColor;
     }
     return _lineView;
 }

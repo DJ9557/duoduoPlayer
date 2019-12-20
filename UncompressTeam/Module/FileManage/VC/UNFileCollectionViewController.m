@@ -65,7 +65,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     self.collectionView.dataSource = self;
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
-    [self.collectionView setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
+    [self.collectionView setBackgroundColor:APPGrayColor];
     [self.collectionView registerClass:[UNCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
@@ -119,7 +119,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
       }
       else
       {
-          cell.imageV.contentMode = UIViewContentModeScaleToFill;
+          cell.imageV.contentMode = UIViewContentModeScaleAspectFit;
           cell.imageV.image = [UIImage imageNamed:model.iconName];
       }
     cell.isCell = self.isCell;
@@ -141,7 +141,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     if (self.isCell) {
         return CGSizeMake(([UIScreen mainScreen].bounds.size.width - 6) / 4, ([UIScreen mainScreen].bounds.size.width - 6) / 4);
     } else {
-        return CGSizeMake([UIScreen mainScreen].bounds.size.width - 4, 80);
+        return CGSizeMake([UIScreen mainScreen].bounds.size.width - 10, 80);
     }
 }
 
@@ -149,7 +149,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     if (self.isCell) {
         return UIEdgeInsetsMake(2, 0, 2, 0);
     } else {
-        return UIEdgeInsetsMake(2, 0, 2, 0);
+        return UIEdgeInsetsMake(5, 5, 5,5);
     }
 }
 
@@ -257,7 +257,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     NSSortDescriptor *prioritySD = [NSSortDescriptor sortDescriptorWithKey:@"priority" ascending:NO];//YES代表升序，NO代表降序
     NSSortDescriptor *nameSD = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:!isDesc];
     NSSortDescriptor *sizeSD = [NSSortDescriptor sortDescriptorWithKey:@"noTransformedSize" ascending:!isDesc];
-    NSSortDescriptor *timeSD = [NSSortDescriptor sortDescriptorWithKey:@"time" ascending:!isDesc];
+    NSSortDescriptor *timeSD = [NSSortDescriptor sortDescriptorWithKey:@"createTime" ascending:!isDesc];
     NSSortDescriptor *typeSD = [NSSortDescriptor sortDescriptorWithKey:@"iconName" ascending:!isDesc];
     //排序方式
     switch (selectedSortType) {

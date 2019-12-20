@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "AppDelegate+JPush.h"
-#import <UMAnalytics/MobClick.h>
 #import <UMCommon/UMCommon.h>
 
 @implementation AppDelegate
@@ -32,10 +30,6 @@
 
 - (void)configSys:(NSDictionary*)launchOptions {
     [UMConfigure initWithAppkey:@"5dd62ecf570df3fc4e000a67" channel:@"App Store"];
-    [self jpushRegWithAppKey:@"cc3219240a331db0ec09af10" launchOptions:launchOptions];
-    //GoogleAd
-    [[GADMobileAds sharedInstance] startWithCompletionHandler:nil];
-    
     [SVProgressHUD setMinimumDismissTimeInterval:1.0f];
     
 }

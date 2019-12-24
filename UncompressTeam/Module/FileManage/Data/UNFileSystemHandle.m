@@ -8,7 +8,7 @@
 
 #import "UNFileSystemHandle.h"
 #import "UNFileManagerTool.h"
-#import "ZLPickPhotoViewController.h"
+#import "UNPickPhotoViewController.h"
 #import <PhotosUI/PhotosUI.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -292,7 +292,7 @@
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"导入照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        ZLPickPhotoViewController *photo = [[ZLPickPhotoViewController alloc] initWithCompleteHandle:^(NSArray *images,NSArray *assetArr) {
+        UNPickPhotoViewController *photo = [[UNPickPhotoViewController alloc] initWithCompleteHandle:^(NSArray *images,NSArray *assetArr) {
             for (int i = 0; i < images.count; i++) {
                 PHAsset *asset = assetArr[i];
                 NSData *data = UIImageJPEGRepresentation(images[i], 1);

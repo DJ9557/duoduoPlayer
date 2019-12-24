@@ -6,12 +6,12 @@
 
 #import "UNFileCollectionViewController.h"
 #import "UNCollectionViewCell.h"
-#import "DataModel.h"
+#import "DJP_DataModel.h"
 #import "AppDelegate.h"
-#import "CellModel.h"
+#import "DJP_CellModel.h"
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "PPVideo_VideoManager.h"
+#import "DJP_VideoManager.h"
 #define MP3 "ico_small_mp3"
 #define MP4 "ico_small_mov"
 #define FOLDER "ico_small_folder"
@@ -19,7 +19,7 @@
 @interface UNFileCollectionViewController () <UICollectionViewDelegateFlowLayout, UIDocumentInteractionControllerDelegate>
 
 {
-    DataModel *dataModel;
+    DJP_DataModel *dataModel;
     AppDelegate *appDelegate;
     UICollectionViewFlowLayout *flowlayout;
 }
@@ -72,7 +72,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 - (void)initData {
     self.isEditing = NO;
     self.selectedNum = 0;
-    dataModel = [[DataModel alloc] initWithPath:self.filePath];
+    dataModel = [[DJP_DataModel alloc] initWithPath:self.filePath];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if (dataModel.dataSource) {
         for (int i = 0; i< dataModel.dataSource.count; i++){
@@ -83,7 +83,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 }
 -(void)reloadData
 {
-     dataModel = [[DataModel alloc] initWithPath:self.filePath];
+     dataModel = [[DJP_DataModel alloc] initWithPath:self.filePath];
      if (dataModel.dataSource) {
          if (self.dataArr.count) {
              [self.dataArr removeAllObjects];
@@ -104,12 +104,12 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CellModel *model = self.dataArr[indexPath.row];
+    DJP_CellModel *model = self.dataArr[indexPath.row];
     UNCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
      cell.nameLab.text = model.name;
     cell.createTimeLab.text = model.createTime;
     cell.sizeLab.text = model.size;
-    UIImage *videoImage = [PPVideo_VideoManager getScreenShotImageFromVideoPath:model.urlPath];
+    UIImage *videoImage = [DJP_VideoManager getScreenShotImageFromVideoPath:model.urlPath];
     cell.imageV.clipsToBounds = YES;
     cell.model = model;
    if ([model.iconName isEqualToString:@MP4]||[model.iconName isEqualToString:@MP3]) {
@@ -154,7 +154,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    CellModel *model = self.dataArr[indexPath.row];
+    DJP_CellModel *model = self.dataArr[indexPath.row];
 
     if (self.isEditing) {
         self.selectedNum++;
@@ -166,7 +166,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         if (self.selectedNum == 0) {
             appDelegate.viewController.title = @"选择项目";
         } else {
-            appDelegate.viewController.title = [NSString stringWithFormat:@"已选择%ld个项目",(long)self.selectedNum];
+//            appDelegate.viewController.title = [NSString stringWithFormat:@"已选择%ld个项目",(long)self.selectedNum];
         }
     } else {
         //点击打开文件
@@ -218,7 +218,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         if (self.selectedNum == 0) {
             appDelegate.viewController.title = @"选择项目";
         } else {
-            appDelegate.viewController.title = [NSString stringWithFormat:@"已选择%ld个项目",(long)self.selectedNum];
+//            appDelegate.viewController.title = [NSString stringWithFormat:@"已选择%ld个项目",(long)self.selectedNum];
         }
     }
 }

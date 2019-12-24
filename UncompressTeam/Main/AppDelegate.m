@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <UMCommon/UMCommon.h>
-
+#import "MainTabVC.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -19,10 +19,12 @@
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor clearColor];
     
-    _viewController = [[UNMainFileManageViewController alloc] initWithFile:nil fileName:nil];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_viewController];
-    self.window.rootViewController = nav;
-    
+//    _viewController = [[UNMainFileManageViewController alloc] initWithFile:nil fileName:nil];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_viewController];
+//    self.window.rootViewController = nav;
+//
+    MainTabVC *main = [[MainTabVC alloc] init];
+    self.window.rootViewController = main;
     [self.window makeKeyAndVisible];
         
     return YES;

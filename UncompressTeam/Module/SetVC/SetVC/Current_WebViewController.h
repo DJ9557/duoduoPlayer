@@ -9,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 // web.cu_UrlStrOrName = @"PerfectChat";
  ////////////////////////
 
-@interface Current_WebViewController : FAPBaseViewController
+@interface Current_WebViewController : DJP_BaseViewController
 ///标题
 @property (nonatomic,strong) NSString *cu_titlestring;
 ///网页URL，本地的HTML名称

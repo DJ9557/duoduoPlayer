@@ -8,7 +8,7 @@
 
 
 #import "UNCollectionViewCell.h"
-#import "CellModel.h"
+#import "DJP_CellModel.h"
 #import "UNFileCollectionViewController.h"
 
 #define IMAGE_WIDTH 50
@@ -38,7 +38,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.backgroundColor = [UIColor whiteColor];
+//        self.contentView.backgroundColor = [UIColor whiteColor];
         [self initView];
     }
     return self;
@@ -57,19 +57,19 @@
        _sizeLab = [[UILabel alloc] initWithFrame:CGRectZero];
        _sizeLab.numberOfLines = 0;
        _sizeLab.font = [UIFont systemFontOfSize:13];
-    _sizeLab.textColor = TextColor;
+    _sizeLab.textColor = KGrayColor;
        [self.contentView addSubview:_sizeLab];
     //文件名
     _nameLab = [[UILabel alloc] initWithFrame:CGRectZero];
     _nameLab.numberOfLines = 0;
-    _sizeLab.textColor = TextColor;
+    _nameLab.textColor = KGrayColor;
     [self.contentView addSubview:_nameLab];
 
     //文件创建时间
     _createTimeLab = [[UILabel alloc] initWithFrame:CGRectZero];
     _createTimeLab.numberOfLines = 0;
     _createTimeLab.font = [UIFont systemFontOfSize:13];
-    _createTimeLab.textColor = TextColor;
+    _createTimeLab.textColor = KGrayColor;
     _createTimeLab.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_createTimeLab];
 
@@ -85,7 +85,7 @@
 }
 
 //实例化具体数据
-- (void)setModel:(CellModel *)model {
+- (void)setModel:(DJP_CellModel *)model {
     _model = model;
     _imageV.image = [UIImage imageNamed:model.iconName];
     _selecedIcon.image = [UIImage imageNamed:@"selected-btn"];

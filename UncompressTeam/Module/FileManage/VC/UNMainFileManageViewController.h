@@ -6,11 +6,11 @@
 //  Copyright © 2019 ghostlord. All rights reserved.
 //
 
-#import "FAPBaseViewController.h"
+#import "DJP_BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UNMainFileManageViewController : FAPBaseViewController
+@interface UNMainFileManageViewController : DJP_BaseViewController
 @property (nonatomic ,strong) UIBarButtonItem *selectAllBtn;
 
 @property (nonatomic ,assign) BOOL isSelectAll;

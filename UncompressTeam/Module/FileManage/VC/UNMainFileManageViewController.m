@@ -15,10 +15,11 @@
 #import "UNFileSystemHandle.h"
 #import "UNCollectionViewCell.h"
 #import "UNFileManagerTool.h"
+#import "PPVideo_CoverView.h"
 #define BLUECOLOR [UIColor colorWithDisplayP3Red:51/255.0 green:171/255.0 blue:238/255.0 alpha:1]
 #import "UNFileManagerTool.h"
-#import "CellModel.h"
-#import "FileIcon.h"
+#import "DJP_CellModel.h"
+#import "DJP_FileIcon.h"
 #define MP3 "ico_small_mp3"
 #define MP4 "ico_small_mov"
 #define FOLDER "ico_small_folder"
@@ -39,11 +40,14 @@
     UIBarButtonItem *deleteBarBtn;
     UIBarButtonItem *zipBtn;
     UIBarButtonItem *saveBtn;
+    UIView *lineView;
     AppDelegate *appDelegate;
     BOOL isDirectoryFirst;//是否勾选目录优先
     BOOL isDesc;//是否升序
     NSInteger selectedSortType;//选择的排序方式:1:名称 2:大小 3:日期 4:类型
     NSMutableArray *dataArr;//页面原始数据
+    NSMutableArray *btnArr;
+    UIButton *publishBtn;
 }
 @property (nonatomic ,strong) UISegmentedControl *segmentedControl;
 
@@ -53,18 +57,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
-    [self initSegContolView];
+    //    [self initSegContolView];
+    [self createHeadSliderView];
     [self configMainView];
     [self setNavItems];
-    [self configToolBar];
+    [self setAddBtn];
+//    [self configToolBar];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     isDirectoryFirst = false;
     isDesc = true;
-
+    
 }
-
+- (void)setAddBtn
+{
+    publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    publishBtn.layer.masksToBounds = YES;
+    publishBtn.layer.cornerRadius = 25;
+    publishBtn.frame = CGRectMake(kScreenWidth-80, kScreenHeight -300, 50, 50);
+    [publishBtn setImage:[UIImage imageNamed:@"3"] forState:UIControlStateNormal];
+    publishBtn.backgroundColor = APPColor;
+    [publishBtn addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:publishBtn];
+    [self.view bringSubviewToFront:publishBtn];
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (collectionController) {
@@ -105,6 +122,56 @@
     }
     [collectionController sortByTypes:selectedSortType isDesc:isDesc isDirectoryFirst:isDirectoryFirst];
 }
+- (void)createHeadSliderView
+{
+    UIView *sliderView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, KScreenWidth, 40)];
+    sliderView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:sliderView];
+    UIView *sepView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 1)];
+    sepView.backgroundColor = APPGrayColor;
+    [sliderView addSubview:sepView];
+    lineView = [[UIView alloc] initWithFrame:CGRectMake(15, 36, 40, 2)];
+    lineView.backgroundColor = ASOColorTheme;
+    lineView.layer.masksToBounds = YES;
+    lineView.layer.cornerRadius = 5;
+    [sliderView addSubview:lineView];
+    btnArr = [NSMutableArray array];
+    NSArray *titleArr = @[@"默认", @"名称",@"大小",@"日期",@"类型"];
+    for (NSInteger i = 0; i < titleArr.count; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(15+i*(40+(KScreenWidth-230)/4), 5, 40, 30);
+        [btn setTitle:titleArr[i] forState:UIControlStateNormal];
+        [btn setTitleColor:KGrayColor forState:UIControlStateNormal];
+        [btn setTitleColor:ASOColorTheme forState:UIControlStateSelected];
+        btn.titleLabel.font = [UIFont systemFontOfSize:16];
+        btn.tag = i;
+        [btnArr addObject:btn];
+        [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [sliderView addSubview:btn];
+        if (i == 0) {
+            btn.selected = YES;
+        }
+    }
+}
+- (void)btnClick:(UIButton*)btn
+{
+    for (UIButton*allBtn in btnArr) {
+        if (allBtn.tag == btn.tag) {
+            allBtn.selected = YES;
+        }
+        else
+        {
+            allBtn.selected = NO;
+        }
+        [UIView animateWithDuration:0.25 animations:^{
+            self->lineView.frame = CGRectMake(15+btn.tag*(40+(KScreenWidth-230)/4), 36, 40, 2);
+        }];
+    }
+    if (btn.tag != 0) {
+        selectedSortType = btn.tag;
+    }
+    [collectionController sortByTypes:selectedSortType isDesc:isDesc isDirectoryFirst:isDirectoryFirst];
+}
 - (void)configMainView {
     flowlayout = [[UICollectionViewFlowLayout alloc] init];
     collectionController = [[UNFileCollectionViewController alloc] initWithCollectionViewLayout:flowlayout];
@@ -130,48 +197,43 @@
     {
         CGPoint point = [longPressGesture locationInView:collectionController.collectionView];
         NSIndexPath *currentIndexPath = [collectionController.collectionView indexPathForItemAtPoint:point];
-        CellModel *model = dataArr[currentIndexPath.row];
+        DJP_CellModel *model = dataArr[currentIndexPath.row];
         [UNFileSystemHandle fileHandleAlertShowFileName:model.name FilePath:model.urlPath collectionVC:collectionController withVC:self ];
     }
 }
 -(void)setNavItems {
     
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    self.navigationController.view.backgroundColor = ASOColorTheme;
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.tintColor = BLUECOLOR;
-    if (self.fileTitle) {
-        self.navigationItem.title = self.fileTitle;
-    } else {
-        self.navigationItem.title = @"多多播放器";
-    }
+    self.navigationController.navigationBar.tintColor = ASOColorTheme;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:ASOColorTheme, NSForegroundColorAttributeName, nil]];
     [self.navigationItem setHidesBackButton:YES];
-    editBtn = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(pushEditView)];
-    self.navigationItem.rightBarButtonItem = editBtn;
     
-    menuBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"app-menu"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSetting)];
+    if (self.fileTitle) {
+           self.navigationItem.title = self.fileTitle;
+       } else {
+           self.navigationItem.title = @"多多播放器";
+       }
+    
+    menuBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"liebiao"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSetting)];
+    
+    listBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"liebiao"] style:UIBarButtonItemStylePlain target:self action:@selector(pop:)];
+       listBtn.tag = 0;
+    searchBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sousuo"] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
     backBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+       editBtn = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(pushEditView)];
+    self.navigationItem.rightBarButtonItem = editBtn;
     if (self.sourcePath) {
         self.navigationItem.leftBarButtonItem = backBtn;
     } else {
-        self.navigationItem.leftBarButtonItem = menuBtn;
+        self.navigationItem.leftBarButtonItem = searchBtn;
     }
 }
 
 -(void)configToolBar {
-    [self.navigationController setToolbarHidden:NO animated:NO];
-    self.navigationController.toolbar.barTintColor = [UIColor whiteColor];
-    self.navigationController.toolbar.tintColor = [UIColor colorWithHexString:@"0x5fa6f8"];
-;
-    spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    listBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"liebiao"] style:UIBarButtonItemStylePlain target:self action:@selector(pop:)];
-    listBtn.tag = 0;
-    searchBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sousuo"] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
-    addBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"add"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction)];
-    
-    [self setToolbarItems:@[spaceItem,listBtn, spaceItem, addBtn, spaceItem, searchBtn, spaceItem ]];
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 - (void)addAction
 {
@@ -182,10 +244,10 @@
 {
     UNMoreSettingViewController *second = [[UNMoreSettingViewController alloc] init];
     second.hidesBottomBarWhenPushed = YES;
-//    CATransition* transition = [CATransition animation];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromLeft;
-//    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    //    CATransition* transition = [CATransition animation];
+    //    transition.type = kCATransitionPush;
+    //    transition.subtype = kCATransitionFromLeft;
+    //    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
     [self.navigationController pushViewController:second animated:YES];
 }
 #pragma mark - 编辑视图(全选 删除)
@@ -218,12 +280,18 @@
     self.navigationItem.title = @"选择项目";
     self.selectAllBtn = [[UIBarButtonItem alloc] initWithTitle:@"全选" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllBtn:)];
     self.navigationItem.leftBarButtonItem = self.selectAllBtn;
+    [self.navigationController setToolbarHidden:NO animated:NO];
+    self.navigationController.toolbar.barTintColor = [UIColor whiteColor];
+    self.navigationController.toolbar.tintColor = ASOColorTheme;
     
+    
+    spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     deleteBtn = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(handleData:)];
     copyBtn = [[UIBarButtonItem alloc]initWithTitle:@"复制" style:UIBarButtonItemStylePlain  target:self action:@selector(handleData:)];
     zipBtn = [[UIBarButtonItem alloc] initWithTitle:@"压缩" style:UIBarButtonItemStylePlain  target:self action:@selector(handleData:)];
     saveBtn = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain  target:self action:@selector(handleData:)];
     [self setToolbarItems:@[deleteBtn,spaceItem, copyBtn,spaceItem,  zipBtn,spaceItem, saveBtn] animated:YES];
+   
 }
 //全选
 - (void)selectAllBtn:(id)sender {
@@ -281,7 +349,7 @@
     self.navigationItem.title = @"选择项目";
     if ([str isEqualToString:@"删除"]) {
         [collectionController.dataArr removeObjectsInArray:collectionController.selectedArr];
-        for (CellModel *model in collectionController.selectedArr) {
+        for (DJP_CellModel *model in collectionController.selectedArr) {
             [[UNFileManagerTool sharedManagerTool] deleteFileAtFilePath:model.urlPath];
         }
         [collectionController.selectedArr removeAllObjects];
@@ -291,7 +359,7 @@
     }
     else if ([str isEqualToString:@"复制"])
     {
-        for (CellModel *model in collectionController.selectedArr) {
+        for (DJP_CellModel *model in collectionController.selectedArr) {
             NSString *fileName = model.name;
             NSString *path = model.urlPath;
             //拷贝文件夹
@@ -315,7 +383,7 @@
     }
     else if ([str isEqualToString:@"压缩"])
     {
-        for (CellModel *model in collectionController.selectedArr) {
+        for (DJP_CellModel *model in collectionController.selectedArr) {
             NSString *fileName = model.name;
             NSString *path = model.urlPath;
             
@@ -343,12 +411,12 @@
         BOOL isContainOtherFile = NO;
         NSMutableArray *saveImageArray = [NSMutableArray array];
         
-        for (CellModel *model in collectionController.selectedArr) {
+        for (DJP_CellModel *model in collectionController.selectedArr) {
             NSString *path = model.urlPath;
             NSString *fileFullName = [[path componentsSeparatedByString:@"/"] lastObject];   //文件全名
             NSString *fileExtension = [fileFullName pathExtension];  //文件后缀
             
-            if (![FileIcon isImage:[fileExtension lowercaseString]]) {
+            if (![DJP_FileIcon isImage:[fileExtension lowercaseString]]) {
                 //不是图片
                 isContainOtherFile = YES;
             }else{
@@ -407,7 +475,7 @@
         return;
     }
     [SVProgressHUD showWithStatus:@"保存中……"];
-    for (CellModel *model in dataArray) {
+    for (DJP_CellModel *model in dataArray) {
         NSString *path =model.urlPath;
         NSData *data = [NSData dataWithContentsOfFile:path];
         UIImage *image = [UIImage imageWithData:data];
@@ -499,7 +567,7 @@
     if (self.sourcePath) {
         self.navigationItem.leftBarButtonItem = backBtn;
     } else {
-        self.navigationItem.leftBarButtonItem = menuBtn;
+        self.navigationItem.leftBarButtonItem = searchBtn;
     }
     self.navigationItem.rightBarButtonItem = editBtn;
     collectionController.dataArr = dataArr;
@@ -509,12 +577,14 @@
 #pragma mark - UISearchBarDelegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSMutableArray *resultArr = [NSMutableArray array];
+ 
     if (dataArr) {
         if (!searchText.length) {
             resultArr = dataArr;
         } else {
             for (int i = 0; i< dataArr.count; i++){
-                NSString *str = dataArr[i][@"name"];
+                DJP_CellModel *model = dataArr[i];
+                NSString *str = model.name;
                 if ([str.lowercaseString containsString:searchText.lowercaseString]) {
                     [resultArr addObject:dataArr[i]];
                 }

@@ -1,0 +1,45 @@
+//
+//  ASOPrefixHeader.pch
+//  LDDVideoPro
+//
+//  Created by Mac on 2019/4/15.
+//  Copyright © 2019 GhostLord. All rights reserved.
+//
+
+#ifndef DJPPrefixHeader_pch
+#define DJPPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+// ------------- 系统框架 ---------
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreText/CoreText.h>
+#import <WebKit/WebKit.h>
+
+// ------------- 三方框架 ---------
+#import <Masonry/Masonry.h>
+#import <MJRefresh/MJRefresh.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <IQKeyboardManager/IQKeyboardManager.h>
+#import <MJExtension/MJExtension.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <YYCategories/YYCategories.h>
+#import <SARUnArchiveANY/SARUnArchiveANY.h>
+// ------------- 项目常量配置及常用公共类 ------
+#import "DJPConstants.h"
+#import "AppDelegate.h"
+#import "DJPUtilsMacros.h"
+// ------------- 常用工具类 ------
+#import "SMBClient.h"
+#import "UIColor+Hex.h"
+
+
+// ------------ 基类 -------
+#import "DJP_BaseViewController.h"
+#import "PayHelp.h"
+#import "PayViewController.h"
+
+
+#endif /* ASOPrefixHeader_pch */

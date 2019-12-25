@@ -7,13 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-/// ------- API 相关 ---------
-#define APIBaseURL_juhe                             [ASOServerManager manager].optimalServer.baseApiUrl_juhe
-#define APIKey_juhe                                 [ASOServerManager manager].optimalServer.appkey_juhe
-#define APIBaseURL_51                               [ASOServerManager manager].optimalServer.baseApiUrl_51
-#define APIKey_51                                   [ASOServerManager manager].optimalServer.appkey_51
-#define APIBaseURL_jisu                             [ASOServerManager manager].optimalServer.baseApiUrl_jisu
-#define APIKey_jisu                                 [ASOServerManager manager].optimalServer.appkey_jisu
 
 /// ----- 测试账号 ----
 #define TestAccount                                 @"13212341234"
@@ -23,11 +16,6 @@
 #define fFont @"EuphemiaUCAS"
 #define kFont(Size) [UIFont systemFontOfSize:Size]
 #define kImage(Name) [UIImage imageNamed:Name]
-
-
-// ------ 公共字符串 -----
-#define NetErrorTipString @"网络繁忙，请稍后重试"
-#define NoDataAndTouchRefresh @"当前无数据，请点击重试"
 
 // ----------- 公共尺寸 ------
 /* 屏幕宽 */
@@ -46,7 +34,7 @@
 #define SCALE_Length(l) (IS_PORTRAIT ? round((SCREEN_Width/375.0*(l))) : round((SCREEN_Width/667.0*(l))))
 
 /** 是否是异形屏 */
-#define IS_HETERO_SCREEN (ASO_iPhone_X || ASO_iPhone_X_Max)
+//#define IS_HETERO_SCREEN (ASO_iPhone_X || ASO_iPhone_X_Max)
 
 /** 是否是竖屏 */
 #define IS_PORTRAIT (([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait) || ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown))
@@ -97,14 +85,6 @@
 #define APPColor ASOColorTheme
 #define ASOColorSeg                          HexColor(0x297FF9)     // 主题颜色
 
-//#define ASOColorLong                            HexColor(0x28A351)     // 上涨颜色(绿色)
-//#define ASOColorShort                           HexColor(0xcc3366)     // 下跌颜色(红色)
-//#define ASOColorKlineBG                          RGBColor(33, 33, 39)
-//#define ASOColorLongBG                           HexColor(0xEDF7EB)//
-//#define ASOColorShortBG                         HexColor(0xFDE7EE)      // 下跌背景颜色(绿色背景)
-#define ASOColorTitle                           HexColor(0x333333)     // 用于主要文字提示，标题，重要文字
-#define ASOColorNormalText                      HexColor(0x666666)     // 正常字体颜色，二级文字，标签栏
-#define ASOColorTipText                         HexColor(0xB4B4B4)     // 提示文字，提示性文字，重要级别较低的文字信息
 #define ASOColorBorder                          HexColor(0xcccccc)     // 边框颜色，提示性信息
 #define ASOColorSeparator                       HexColor(0xeeeeee)     // 分割线颜色，宽度1像素
 #define ASOColorGap                             HexColor(0xF8F8F8)     // 背景间隔色彩
@@ -112,9 +92,7 @@
 #define ASOColorText_000000                     HexColor(0x000000)     // 黑色背景色
 #define ASOColorAlert_f8f8f8                    HexColor(0xf8f8f8)     // 首页收藏视图弹框颜色
 #define ASOColorWarning                         HexColor(0xFA0000)     // 警告颜色
-//#define ASOColorMarketDetail                    HexColor(0xffffff)      // 行情详情页背景
-//#define ASOColorMarketDetailsBG                 ASOColorKlineBG
-//背景透明色
+
 #define ASOColorAlert_BGColor                   HexAlphaColor(0x000000,0.4)
 #define APPGrayColor RGBCOLOR(242, 242, 242)
 
@@ -129,18 +107,9 @@
 #define kWhiteColor [UIColor whiteColor]
 #define CLEARCOLOR [UIColor clearColor]
 
-#define C333 RGBColor(51, 51, 51)
-#define C666 RGBColor(102, 102, 102)
-#define C999 RGBColor(153, 153, 153)
 #define DefaultRedColor RGBColor(207, 76, 102)
 #define DefaultGreenColor RGBColor(27, 157, 123)
 #define kTabBarBackgroundColor RGBColor(19, 29, 50)
-
-#define FDefaultFont14 [UIFont systemFontOfSize:14.0f]
-#define FDefaultFont16 [UIFont systemFontOfSize:16.0f]
-
-
-
 
 // 手机尺寸型号
 #define ASO_iPhone_4x        (SCREEN_Width == 320 && SCREEN_Height == 480)
@@ -187,18 +156,6 @@ if (string) {\
 
 /** 系统Document文件夹路径*/
 #define DocumentsPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
-
-////测试Key
-//#define BaseADAPPID @"ca-app-pub-6864430072527422~9932626301"
-////banner
-//#define BannerADID @"ca-app-pub-6864430072527422/1557983277"
-////插屏广告
-//#define InteredADID @"ca-app-pub-6864430072527422/7931819933"
-////原生广告
-//#define NomalADID @"ca-app-pub-6864430072527422/8044829565"
-////激励广告
-//#define GULIADID @"ca-app-pub-6864430072527422/3992574922"
-
 
 //测试Key
 #define BaseADAPPID @"ca-app-pub-3940256099942544~1458002511"

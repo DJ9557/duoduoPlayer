@@ -1,8 +1,8 @@
 //
-//  BaseViewController.h
+//  ProtolVC.h
 //  FutureGoodsProject
 //
-//  Created by mac on 2019/7/29.
+//  Created by mac on 2019/7/31.
 //  Copyright © 2019 mac. All rights reserved.
 //
 
@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseViewController : UIViewController 
-
+@interface PDProtolVC : UIViewController
+@property (nonatomic ,strong) NSString *urlStr;
 @end
 
 NS_ASSUME_NONNULL_END

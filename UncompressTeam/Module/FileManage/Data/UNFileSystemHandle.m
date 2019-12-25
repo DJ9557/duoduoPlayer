@@ -32,6 +32,7 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"隔空投送/分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *textToShare = [NSString stringWithFormat:@"%@",fileName];
         UIImage *imageToShare = [UIImage imageNamed:@"AppIcon"];
+        
         //分享的url
         //           NSURL *urlToShare = [NSURL URLWithString:_playingModel.downloadurl];
         //在这里呢 如果想分享图片 就把图片添加进去  文字什么的通上

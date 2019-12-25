@@ -12,6 +12,7 @@
 #import <MessageUI/MessageUI.h>
 #import "SetTableViewCell.h"
 #import "DJPayViewController.h"
+#import "PDProtolVC.h"
 @interface DJP_SettingViewController ()<MFMailComposeViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic ,strong) UITableView *tableView;
 @property (nonatomic ,strong) NSArray *imgArr;

@@ -23,19 +23,18 @@
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.detailLabel];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_itunes_share"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"itunesbground"]];
     [self.view addSubview:imageView];
     
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.view.mas_top).offset(20+NAVIGATION_BAR_HEIGHT);
-        make.size.mas_equalTo(CGSizeMake(60, 60));
+       make.left.right.top.equalTo(self.view);
+        make.height.mas_equalTo(imageView.mas_width).multipliedBy(0.86);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(40);
         make.right.equalTo(self.view.mas_right).offset(-40);
-        make.top.equalTo(imageView.mas_bottom).offset(30);
+        make.top.equalTo(imageView.mas_bottom).offset(20);
         make.height.mas_equalTo(40);
     }];
     

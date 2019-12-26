@@ -2,10 +2,9 @@
 
 @implementation DJP_UserCenter
 
-static DJP_UserCenter *instance = nil;
 
 #define kSAVE_USERINFOR @"save_userinfor"
-
+static DJP_UserCenter *instance = nil;
 +(DJP_UserCenter *) getInstance{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,

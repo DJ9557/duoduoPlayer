@@ -8,33 +8,26 @@
 
 #import "AVPlayerItem+Hook.h"
 #import "NSObject+MethodSwizzle.h"
-static const void *kEnableHook = @"enableHook";
+#import "AvplayItemManger.h"
 
 @implementation AVPlayerItem (Hook)
 +(void)load
 {
     [self PPVideo_swizzleMethod:@selector(initWithAsset:automaticallyLoadedAssetKeys:) withMethod:@selector(DJ_initWithAsset:automaticallyLoadedAssetKeys:)];
 }
-//-(void)setEnableHook:(BOOL)enableHook
-//{
-//    objc_setAssociatedObject(self, kEnableHook, [NSNumber numberWithBool:kEnableHook], OBJC_ASSOCIATION_ASSIGN);;
-//}
-//-(BOOL)enableHook
-//{
-//    return [objc_getAssociatedObject(self, kEnableHook) boolValue];
-//}
--(void)startHook
+
++(void)startHook
 {
-    self.enableHook = YES;
+    [[AvplayItemManger getInstance] AVItemStartHook];
 }
--(void)stopHook
++(void)stopHook
 {
-    self.enableHook = NO;
+   [[AvplayItemManger getInstance] AVItemStopHook];
+
 }
 -(instancetype)DJ_initWithAsset:(AVAsset *)asset automaticallyLoadedAssetKeys:(NSArray<NSString *> *)automaticallyLoadedAssetKeys
 {
-    if ([asset isKindOfClass:AVURLAsset.class]) {
-        
+    if ([[AvplayItemManger getInstance] getAVItemIsHook]&&[asset isKindOfClass:AVURLAsset.class]) {
         AVURLAsset *urlAssert = (AVURLAsset*)asset;
         NSString *url = urlAssert.URL.absoluteString;
         BOOL isVideo = urlAssert.isCompatibleWithAirPlayVideo;
@@ -44,6 +37,7 @@ static const void *kEnableHook = @"enableHook";
             ext = @"";
         }
         if (url.length) {
+            [AVPlayerItem stopHook];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NeedPlayMedia" object:@{@"url":url,@"ext":ext}];
         }
         return nil;

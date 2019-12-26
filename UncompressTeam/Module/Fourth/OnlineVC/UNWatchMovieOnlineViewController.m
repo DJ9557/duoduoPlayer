@@ -13,14 +13,15 @@
 #import <Masonry/Masonry.h>
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "CYWebViewController.h"
 #import "WebviewProgressLine.h"
 #import "AVPlayerItem+Hook.h"
-
-
+#import "AvplayItemManger.h"
+#import "OnlineCollectionCell.h"
+#import "OnlineCollectionReusableView.h"
+#import "OnlineMarkModel.h"
 #define WEAKSELF                    typeof(self) __weak weakSelf=self;
 
-@interface UNWatchMovieOnlineViewController ()<UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate,UIWebViewDelegate>
+@interface UNWatchMovieOnlineViewController ()<UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate,UIWebViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 {
     UIBarButtonItem *shuaxinBtn;
     UIBarButtonItem *backBtn;
@@ -29,7 +30,6 @@
     UIBarButtonItem *putBtn;
     UIBarButtonItem *handleBtn;
     UIBarButtonItem *spaceItem;
-    
 }
 @property (nonatomic, strong)UITextField *urlTextField;
 @property (nonatomic, strong)UITableView *historyTableView;
@@ -37,7 +37,12 @@
 @property (nonatomic ,strong)UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *webBgView;
 @property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic ,strong) UIButton *reloadBtn;
 @property (nonatomic,strong) WebviewProgressLine  *progressLine;
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *markDataArray;
+@property (nonatomic, strong) NSMutableArray *historyDataArray;
+
 @end
 
 @implementation UNWatchMovieOnlineViewController
@@ -46,7 +51,9 @@
     [super viewDidLoad];
     [self createSearchBar];
     self.view.backgroundColor = [UIColor colorWithHexString:@"F8F8F8"];
-    [self initSubViews];
+    //    [self initSubViews];
+    [self.view addSubview:self.collectionView];
+    [self getLoadData];
     [self createWebBgVoew];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVItem:) name:@"NeedPlayMedia" object:nil];
 }
@@ -55,36 +62,126 @@
     NSDictionary* Info = [notification object];
     NSString *url = Info[@"url"];
     if (url.length) {
+        [SVProgressHUD dismiss];
         dispatch_async(dispatch_get_main_queue(), ^{
-                                       UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"解析视频链接" message:[NSString stringWithFormat:@"是否使用多多播放器播放该视频：%@",url] preferredStyle:UIAlertControllerStyleActionSheet];
-                                              [alertController addAction:[UIAlertAction actionWithTitle:@"使用" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                                                  AVPlayerViewController *playVC = [[AVPlayerViewController alloc] init];
-                                                                                           playVC.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:url]];
-                                                                                           AVAudioSession *session = [AVAudioSession sharedInstance];
-                                                                                           [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
-                                                                                           [self presentViewController:playVC animated:YES completion:^{
-                                                                                               
-                                                                                           }];
-                                                                                           [playVC.player play];
-                                                 
-                                              }]];
-                                              [alertController addAction:[UIAlertAction actionWithTitle:@"拷贝视频链接" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                                                         UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-                                                            pboard.string = url;
-                                                            [SVProgressHUD showSuccessWithStatus:@"链接已经拷贝"];
-                                                     }]];
-                                              [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                                                  
-                                              }]];
-                                              [self presentViewController:alertController animated:YES completion:nil];
-                                     });
-       
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"链接：%@",url] preferredStyle:UIAlertControllerStyleActionSheet];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"立即播放" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                AVPlayerViewController *playVC = [[AVPlayerViewController alloc] init];
+                playVC.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:url]];
+                AVAudioSession *session = [AVAudioSession sharedInstance];
+                [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
+                [self presentViewController:playVC animated:YES completion:^{
+                    
+                }];
+                [playVC.player play];
+                
+            }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"拷贝视频链接" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+                pboard.string = url;
+                [SVProgressHUD showSuccessWithStatus:@"链接已经拷贝"];
+            }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            [self presentViewController:alertController animated:YES completion:nil];
+        });
+        
     }
-//    [SVProgressHUD showWithStatus:url];
+    
 }
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (UICollectionView*)collectionView{
+    if (!_collectionView) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.itemSize = CGSizeMake((SCREEN_Width-15)/4-5, 120);
+        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
+        layout.headerReferenceSize = CGSizeMake(SCREEN_Width, 50);
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 0;
+        //        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, ScreenHeight) collectionViewLayout:layout];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        [_collectionView registerNib:[UINib nibWithNibName:@"OnlineCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"OnlineCollectionCell"];
+        [_collectionView registerNib:[UINib nibWithNibName:@"OnlineCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"OnlineCollectionReusableView"];
+    }
+    return _collectionView;
+}
+-(NSMutableArray *)markDataArray
+{
+    if (!_markDataArray) {
+        _markDataArray = [NSMutableArray array];
+    }
+    return _markDataArray;
+}
+-(NSMutableArray *)historyDataArray
+{
+    if (!_historyDataArray) {
+        _historyDataArray = [NSMutableArray array];
+    }
+    return _historyDataArray;
+}
+- (void)getLoadData
+{
+    for (NSDictionary *dic in [OnlineMarkModel configData]) {
+        OnlineMarkModel *model = [[OnlineMarkModel alloc] init];
+        model.name = dic[@"name"];
+        model.urlStr = dic[@"urlStr"];
+        model.imgStr = dic[@"imgStr"];
+        [self.markDataArray addObject:model];
+    }
+    [self.collectionView reloadData];
+}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    OnlineCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"OnlineCollectionReusableView" forIndexPath:indexPath];
+    NSArray *headerArr = @[@"我的标签",@"浏览记录"];
+    header.titleLabel.text = headerArr[indexPath.section];
+    header.interDownBlock = ^{
+        NSLog(@"oooo%@",headerArr[indexPath.section]);
+    };
+    return header;
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 2;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if (section == 0) {
+        return  self.markDataArray.count;
+    }
+    else
+    {
+        return 4;
+    }
+}
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0)
+    {
+        OnlineMarkModel *model = self.markDataArray[indexPath.row];
+        OnlineCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OnlineCollectionCell" forIndexPath:indexPath];
+        cell.titlelabel.text = model.name;
+        cell.imgView.image = [UIImage imageNamed:model.imgStr];
+        return cell;
+    }
+    else
+    {
+        OnlineCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OnlineCollectionCell" forIndexPath:indexPath];
+              
+              return cell;
+    }
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    OnlineMarkModel *model = self.markDataArray[indexPath.row];
+
+    [self startWebViewWithUrlStr:model.urlStr];
 }
 #pragma mark - webview
 - (UIWebView *)webView{
@@ -120,42 +217,71 @@
     _searchBar = [[UISearchBar alloc] initWithFrame:frame];
     _searchBar.placeholder = @"请输入链接";
     _searchBar.delegate = self;
-    _searchBar.showsSearchResultsButton = YES;
     _searchBar.tintColor = ASOColorTheme;
-    UIButton *cancleBtn = [_searchBar valueForKey:@"cancelButton"];
-    [cancleBtn addTarget:self action:@selector(cancelSearch) forControlEvents:UIControlEventTouchUpInside];
-    [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [cancleBtn setTitleColor:ASOColorTheme forState:UIControlStateNormal];
+    _searchBar.showsCancelButton = NO;
+    self.reloadBtn.frame = CGRectMake(_searchBar.width-40, 20, 20, 20);
+    [_searchBar addSubview:self.reloadBtn];
+   
     if(@available(iOS 11.0, *)) {
         [[_searchBar.heightAnchor constraintEqualToConstant:44] setActive:YES];
     }
     self.navigationItem.titleView = _searchBar;
+    UIButton *cancleBtn = [_searchBar valueForKey:@"cancelButton"];
+    [cancleBtn addTarget:self action:@selector(cancelSearch) forControlEvents:UIControlEventTouchUpInside];
+    [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancleBtn setTitleColor:ASOColorTheme forState:UIControlStateNormal];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
-
-- (void)cancelSearch {
-    self.searchBar.showsCancelButton = YES;
+-(UIButton *)reloadBtn
+{
+    if (!_reloadBtn) {
+        _reloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_reloadBtn setImage:[UIImage imageNamed:@"刷新"] forState:UIControlStateNormal];
+        [_reloadBtn addTarget:self action:@selector(reloadButtonPush) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _reloadBtn;
 }
-
+- (void)cancelSearch {
+    [self.searchBar resignFirstResponder];
+    [self WebViewIsHidden:YES];
+    self.searchBar.showsCancelButton = NO;
+    self.reloadBtn.hidden = NO;
+}
+- (void)startWebViewWithUrlStr:(NSString*)urlStr
+{
+     [self WebViewIsHidden:NO];
+     [self webViewLoadUrlStr:urlStr];
+}
 #pragma mark - UISearchBarDelegate
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    searchBar.showsCancelButton = YES;
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+//
+//}
+//-(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+//{
+//    if (_searchBar.text.length) {
+//        [self startWebViewWithUzhengrlStr:_searchBar.text];
+//    }
+//    return YES;
+//}
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    UIButton *cancleBtn = [_searchBar valueForKey:@"cancelButton"];
+    [cancleBtn addTarget:self action:@selector(cancelSearch) forControlEvents:UIControlEventTouchUpInside];
+    [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
+//    [searchBar setShowsCancelButton:YES animated:YES];
+}
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    _searchBar.showsCancelButton = YES;
+    self.reloadBtn.hidden = YES;
+    return YES;
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    //    CYWebViewController *webVC = [[CYWebViewController alloc] initWithURLString:searchBar.text];
-    //    webVC.navigationButtonsHidden = NO;
-    //    [self.navigationController pushViewController:webVC animated:YES];
-    [self WebViewIsHidden:NO];
     if (_searchBar.text.length) {
-        [self webViewLoadUrlStr:_searchBar.text];
-    }
-    else
-    {
-        
-    }
-    
+           [self startWebViewWithUrlStr:_searchBar.text];
+       }
+    [self cancelSearch];
 }
+
 - (void)WebViewIsHidden:(BOOL)ishide
 {
     _webBgView.hidden = ishide;
@@ -164,15 +290,15 @@
 }
 - (void)webViewLoadUrlStr:(NSString*)str
 {
-    NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
+    NSURL *url = [NSURL URLWithString:str];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 - (void)handleWebBtns
 {
-    [self.navigationController setToolbarHidden:NO animated:YES];
     spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     backBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"后退"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPush)];
     forwardBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"前进"] style:UIBarButtonItemStylePlain target:self action:@selector(forwardButtonPush)];
+    
     mainBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"首页"] style:UIBarButtonItemStylePlain target:self action:@selector(pushMainView)];
     putBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"导出"] style:UIBarButtonItemStylePlain target:self action:@selector(putData)];
     handleBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"操作"] style:UIBarButtonItemStylePlain target:self action:@selector(handleWebView)];
@@ -221,16 +347,23 @@
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [alertController addAction:[UIAlertAction actionWithTitle:@"视频云解析" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        [AVPlayerItem startHook];
+        [SVProgressHUD showWithStatus:@"正在解析视频链接，请稍等"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //            if ([[AvplayItemManger getInstance] getAVItemIsHook] == YES) {
+            //                [SVProgressHUD showErrorWithStatus:@"视频链接解析失败"];
+            //                [AVPlayerItem stopHook];
+            //            }
+        });
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"添加书签" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-          
-      }]];
+        
+    }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-             
-         }]];
+        
+    }]];
     [self presentViewController:alertController animated:YES completion:nil];
-
+    
 }
 - (void)reloadButtonPush {
     

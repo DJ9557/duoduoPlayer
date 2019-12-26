@@ -33,7 +33,7 @@
 // ------------- 常用工具类 ------
 #import "SMBClient.h"
 #import "UIColor+Hex.h"
-
+#import "JKDBModel.h"
 
 // ------------ 基类 -------
 #import "DJP_BaseViewController.h"

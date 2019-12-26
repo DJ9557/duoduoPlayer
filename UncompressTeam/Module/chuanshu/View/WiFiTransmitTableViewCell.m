@@ -33,7 +33,7 @@
 -(void)copyLabelText
 {
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-    pboard.string = self.titleLabel.text;
+    pboard.string = self.titleLabel.text?self.titleLabel.text:@"";
     [SVProgressHUD showSuccessWithStatus:@"地址已复制"];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -11,9 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AVPlayerItem (Hook)
-@property (nonatomic ,assign) BOOL enableHook;
--(void)startHook;
--(void)stopHook;
+//@property (nonatomic ,assign) BOOL enableHook;
++(void)startHook;
++(void)stopHook;
 @end
 
 NS_ASSUME_NONNULL_END

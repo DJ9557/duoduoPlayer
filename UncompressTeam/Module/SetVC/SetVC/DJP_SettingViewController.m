@@ -65,7 +65,7 @@
         _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 220)];
     }
     UIImageView *headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width,220)];
-    headImgView.contentMode = UIViewContentModeScaleAspectFit;
+    headImgView.contentMode = UIViewContentModeScaleAspectFill;
     headImgView.image = [UIImage imageNamed:@"banner备份"];
     [_headView addSubview:headImgView];
     return _headView;

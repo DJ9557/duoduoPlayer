@@ -12,6 +12,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    _bgView.layer.masksToBounds = YES;
+    _bgView.layer.cornerRadius = 10;
+    _bgView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     // Initialization code
 }
 - (IBAction)interDown:(id)sender {

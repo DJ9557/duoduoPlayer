@@ -13,11 +13,16 @@
 #import "SetTableViewCell.h"
 #import "DJPayViewController.h"
 #import "PDProtolVC.h"
+#import "DJP_UserCenter.h"
+#import "DJP_LoginViewController.h"
+#import "DJP_MainNavController.h"
 @interface DJP_SettingViewController ()<MFMailComposeViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic ,strong) UITableView *tableView;
 @property (nonatomic ,strong) NSArray *imgArr;
 @property (nonatomic ,strong) NSArray *titleArr;
 @property (nonatomic ,strong) UIView *headView;
+@property (nonatomic ,strong) UIView *footerView;
+@property (nonatomic ,strong) UIButton *loginBtn;
 @end
 
 @implementation DJP_SettingViewController
@@ -32,6 +37,13 @@
 {
     self.imgArr = @[@"清理缓存备份 2",@"意见反馈备份",@"关于我们备份",@"vip备份"];
     self.titleArr = @[@"清理缓存",@"意见反馈",@"关于我们",@"升级VIP"];
+    if ([[DJP_UserCenter getInstance] getUserIsLogin]) {
+        [self.loginBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
+    }
     [self.tableView reloadData];
 }
 -(UITableView *)tableView
@@ -41,6 +53,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableHeaderView = self.headView;
+        _tableView.tableFooterView = self.footerView;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerNib:[UINib nibWithNibName:@"SetTableViewCell" bundle:nil] forCellReuseIdentifier:@"SetTableViewCell"];
     }
@@ -56,6 +69,39 @@
     headImgView.image = [UIImage imageNamed:@"banner备份"];
     [_headView addSubview:headImgView];
     return _headView;
+}
+-(UIView *)footerView
+{
+    if (!_footerView) {
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 80)];
+    }
+    _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _loginBtn.frame = CGRectMake(45, 20, SCREEN_Width-90, 40);
+    [_loginBtn setTitle:@"立即登录" forState:UIControlStateSelected];
+    [_loginBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+    _loginBtn.layer.masksToBounds = YES;
+    _loginBtn.layer.cornerRadius = 40/2;
+    [_loginBtn setTitleColor:ASOColorTheme forState:UIControlStateNormal];
+    [_loginBtn addTarget:self action:@selector(pushLoginOrOutLogin) forControlEvents:UIControlEventTouchUpInside];
+    [_footerView addSubview:_loginBtn];
+    
+    return _footerView;
+}
+- (void)pushLoginOrOutLogin
+{
+    NSString *loginTextStr = self.loginBtn.titleLabel.text;
+    if ([loginTextStr isEqualToString:@"退出登录"]) {
+        [[DJP_UserCenter getInstance] userLogOut];
+        [_loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
+    }
+    else
+    {
+        DJP_LoginViewController *login = [[DJP_LoginViewController alloc] init];
+        login.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        [self presentViewController:login animated:YES completion:^{
+            
+        }];
+    }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -135,10 +181,7 @@
     }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    
     [self presentViewController:alertController animated:YES completion:nil];
-    
-    
 }
 
 -(void)aboutUs

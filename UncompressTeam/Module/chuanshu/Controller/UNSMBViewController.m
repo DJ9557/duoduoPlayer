@@ -8,10 +8,11 @@
 
 #import "UNSMBViewController.h"
 #import "UIBarButtonItem+Extension.h"
-#import "SMBSection0TableViewCell.h"
-#import "SMBSection1TableViewCell.h"
+#import "DJSMBSection0TableViewCell.h"
+#import "DJSMBSection1TableViewCell.h"
 #import "DJP_SMBManager.h"
 #import "UNSMBFileTootListViewController.h"
+#import "DJPayViewController.h"
 
 @interface UNSMBViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic,strong) UITableView *myTableView;
@@ -33,7 +34,7 @@
     self.IPAddress = @"";
     self.userName = @"";
     self.password = @"";
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem BarButtonItemWithTitle:@"链接" style:UIBarButtonItemStylePlain target:self action:@selector(rightClick)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem BarButtonItemWithTitle:@"链接" style:UIBarButtonItemStylePlain target:self action:@selector(dj_rightClick)];
     _myTableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         tableView.backgroundColor = [UIColor whiteColor];
@@ -44,13 +45,13 @@
         [self.view addSubview:tableView];
         tableView;
     });
-    [_myTableView registerNib:[UINib nibWithNibName:@"SMBSection0TableViewCell" bundle:nil] forCellReuseIdentifier:@"SMBSection0TableViewCell"];
-    [_myTableView registerNib:[UINib nibWithNibName:@"SMBSection1TableViewCell" bundle:nil] forCellReuseIdentifier:@"SMBSection1TableViewCell"];
+    [_myTableView registerNib:[UINib nibWithNibName:@"DJSMBSection0TableViewCell" bundle:nil] forCellReuseIdentifier:@"DJSMBSection0TableViewCell"];
+    [_myTableView registerNib:[UINib nibWithNibName:@"DJSMBSection1TableViewCell" bundle:nil] forCellReuseIdentifier:@"DJSMBSection1TableViewCell"];
     [_myTableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"HEADER"];
-    [self findSMB];
+    [self dj_findSMB];
 }
 
-- (void)findSMB {
+- (void)dj_findSMB {
     WEAKSELF
     [[SMBDiscovery sharedInstance] startDiscoveryOfType:SMBDeviceTypeAny added:^(SMBDevice *device) {
         if (![weakSelf.dataArray containsObject:device]) {
@@ -72,7 +73,7 @@
     [[SMBDiscovery sharedInstance] stopDiscovery];
 }
 
-- (void)rightClick {
+- (void)dj_rightClick {
     if ([[PayHelp sharePayHelp] isApplePay]) {
         if (self.IPAddress.length == 0) {
             [SVProgressHUD showErrorWithStatus:@"请输入主机IP"];
@@ -99,7 +100,7 @@
             }
         }];
     } else {
-        PayViewController *pay = [[PayViewController alloc] init];
+        DJPayViewController *pay = [[DJPayViewController alloc] init];
         pay.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:pay animated:YES completion:^{
             
@@ -140,7 +141,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0 ) {
-        SMBSection0TableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"SMBSection0TableViewCell" forIndexPath:indexPath];
+        DJSMBSection0TableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"DJSMBSection0TableViewCell" forIndexPath:indexPath];
         cell.titleLabel.text =self.nameArray[indexPath.row];
         cell.contentField.placeholder = self.houlderArray[indexPath.row];
         if (indexPath.row == 0) {
@@ -162,7 +163,7 @@
         }];
         return cell;
     } else if (indexPath.section == 1) {
-        SMBSection1TableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"SMBSection1TableViewCell" forIndexPath:indexPath];
+        DJSMBSection1TableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"DJSMBSection1TableViewCell" forIndexPath:indexPath];
         SMBDevice *device = [self.dataArray objectAtIndex:indexPath.row];
         cell.nameLabel.text = device.netbiosName;
         cell.addressLabel.text = device.host;

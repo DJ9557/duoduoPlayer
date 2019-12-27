@@ -21,14 +21,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="170" height="128"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YouTube" translatesAutoresizingMaskIntoConstraints="NO" id="e6g-Te-lHC">
-                                <rect key="frame" x="55" y="15" width="60" height="60"/>
+                                <rect key="frame" x="55" y="10" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="4wM-hS-4Vb"/>
                                     <constraint firstAttribute="height" constant="60" id="cpY-6M-TnM"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="百度啦啦啦啦" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHi-sI-NAA">
-                                <rect key="frame" x="55" y="89.5" width="60" height="33.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="百度啦啦啦啦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHi-sI-NAA">
+                                <rect key="frame" x="55" y="75" width="60" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="akT-Pu-MzX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -36,11 +39,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="e6g-Te-lHC" firstAttribute="top" secondItem="moN-WC-BxT" secondAttribute="top" constant="15" id="0BA-ol-LJS"/>
+                            <constraint firstItem="e6g-Te-lHC" firstAttribute="top" secondItem="moN-WC-BxT" secondAttribute="top" constant="10" id="0BA-ol-LJS"/>
                             <constraint firstItem="IHi-sI-NAA" firstAttribute="centerX" secondItem="e6g-Te-lHC" secondAttribute="centerX" id="Bh5-oy-8Ul"/>
                             <constraint firstItem="e6g-Te-lHC" firstAttribute="centerX" secondItem="moN-WC-BxT" secondAttribute="centerX" id="Gr2-7t-T6j"/>
                             <constraint firstItem="IHi-sI-NAA" firstAttribute="width" secondItem="e6g-Te-lHC" secondAttribute="width" id="okF-HD-i0O"/>
-                            <constraint firstAttribute="bottom" secondItem="IHi-sI-NAA" secondAttribute="bottom" constant="5" id="vlj-Me-Kwe"/>
+                            <constraint firstItem="IHi-sI-NAA" firstAttribute="top" secondItem="e6g-Te-lHC" secondAttribute="bottom" constant="5" id="scw-QH-Ejl"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -54,6 +57,7 @@
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="170" height="128"/>
             <connections>
+                <outlet property="bgView" destination="moN-WC-BxT" id="WKZ-PQ-zXC"/>
                 <outlet property="imgView" destination="e6g-Te-lHC" id="ac2-pw-Y7O"/>
                 <outlet property="titlelabel" destination="IHi-sI-NAA" id="1i9-EL-pub"/>
             </connections>

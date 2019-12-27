@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BeE-1N-y0V">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setbg" translatesAutoresizingMaskIntoConstraints="NO" id="BeE-1N-y0V">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" red="0.028947452080000002" green="0.070663250979999995" blue="0.19960102439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
@@ -230,9 +230,21 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbI-Bq-vw4">
+                    <rect key="frame" x="25" y="30" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="f4v-g4-9S0"/>
+                        <constraint firstAttribute="width" constant="40" id="vlY-fu-Izs"/>
+                    </constraints>
+                    <state key="normal" image="back"/>
+                    <connections>
+                        <action selector="registervcDismiss:" destination="-1" eventType="touchUpInside" id="E7K-FC-JdD"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="kbI-Bq-vw4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="25Z-RX-1iK"/>
                 <constraint firstItem="dS4-Uh-CRp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="3Io-Is-Njm"/>
                 <constraint firstAttribute="trailing" secondItem="eDR-0v-RfG" secondAttribute="trailing" constant="30" id="3xV-xC-BW7"/>
                 <constraint firstAttribute="trailing" secondItem="BeE-1N-y0V" secondAttribute="trailing" id="4Hk-xr-TbP"/>
@@ -240,6 +252,7 @@
                 <constraint firstItem="eDR-0v-RfG" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="25" id="E8D-Mc-CC7"/>
                 <constraint firstItem="eDR-0v-RfG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JL7-j7-7Jf"/>
                 <constraint firstItem="eDR-0v-RfG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="RQr-vh-8hY"/>
+                <constraint firstItem="kbI-Bq-vw4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="VP9-df-R8u"/>
                 <constraint firstItem="eDR-0v-RfG" firstAttribute="top" secondItem="dS4-Uh-CRp" secondAttribute="bottom" constant="25" id="azK-vc-Znq"/>
                 <constraint firstItem="BeE-1N-y0V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eYJ-NB-9TI"/>
                 <constraint firstAttribute="bottom" secondItem="BeE-1N-y0V" secondAttribute="bottom" id="sea-ii-pOx"/>
@@ -248,7 +261,9 @@
         </view>
     </objects>
     <resources>
+        <image name="back" width="9" height="15"/>
         <image name="pf_chat_login_phone" width="24" height="24"/>
         <image name="pf_chat_login_pwd" width="24" height="24"/>
+        <image name="setbg" width="375" height="812"/>
     </resources>
 </document>

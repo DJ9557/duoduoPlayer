@@ -10,9 +10,9 @@
 #import "UNiTunesDownloadViewController.h"
 #import "UNWiFiTransmitViewController.h"
 #import "UNiCloudManager.h"
-#import "ImageTitleTableViewCell.h"
+#import "DJImageTitleTableViewCell.h"
 #import "UNSMBViewController.h"
-#import "SecondHeaderView.h"
+#import "DJSecondHeaderView.h"
 #import "UNWatchMovieOnlineViewController.h"
 #import "DJP_SettingViewController.h"
 @interface UNMoreSettingViewController ()<UITableViewDelegate, UITableViewDataSource,UIDocumentPickerDelegate>
@@ -44,8 +44,8 @@
         make.right.equalTo(self.view.mas_right).offset(0);
         make.top.bottom.equalTo(self.view);
     }];
-    [_myTableView registerNib:[UINib nibWithNibName:@"ImageTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"ImageTitleTableViewCell"];
-    [_myTableView registerClass:[SecondHeaderView class] forHeaderFooterViewReuseIdentifier:@"HEADER"];
+    [_myTableView registerNib:[UINib nibWithNibName:@"DJImageTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"DJImageTitleTableViewCell"];
+    [_myTableView registerClass:[DJSecondHeaderView class] forHeaderFooterViewReuseIdentifier:@"HEADER"];
 }
 
 #pragma mark - UITableView
@@ -67,7 +67,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    SecondHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HEADER"];
+    DJSecondHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HEADER"];
     if (section == 0) {
         header.timeLabel.text = @"传输";
     } else {
@@ -82,12 +82,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        ImageTitleTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"ImageTitleTableViewCell" forIndexPath:indexPath];
+        DJImageTitleTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"DJImageTitleTableViewCell" forIndexPath:indexPath];
         cell.titleLabel.text = self.nameArray[indexPath.row];
         cell.imageView.image = [UIImage imageNamed:self.imgArr[indexPath.row]];
         return cell;
     } else {
-        ImageTitleTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"ImageTitleTableViewCell" forIndexPath:indexPath];
+        DJImageTitleTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"DJImageTitleTableViewCell" forIndexPath:indexPath];
         if (indexPath.row == 0) {
             cell.titleLabel.text = @"专业版";
             cell.imageView.image = [UIImage imageNamed:@"goumai"];

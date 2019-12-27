@@ -19,6 +19,8 @@
 #import "OnlineCollectionCell.h"
 #import "OnlineCollectionReusableView.h"
 #import "OnlineMarkModel.h"
+#import "OnlinePlayModel.h"
+#import "DJP_VideoManager.h"
 #define WEAKSELF                    typeof(self) __weak weakSelf=self;
 
 @interface UNWatchMovieOnlineViewController ()<UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate,UIWebViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
@@ -42,6 +44,8 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *markDataArray;
 @property (nonatomic, strong) NSMutableArray *historyDataArray;
+@property (nonatomic ,copy) NSString *markTitleStr;
+@property (nonatomic ,copy) NSString *markUrl;
 
 @end
 
@@ -66,6 +70,12 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:[NSString stringWithFormat:@"链接：%@",url] preferredStyle:UIAlertControllerStyleActionSheet];
             [alertController addAction:[UIAlertAction actionWithTitle:@"立即播放" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                OnlinePlayModel *model = [[OnlinePlayModel alloc] init];
+                model.name = self.markTitleStr;
+                model.urlStr = url;
+                model.imgData = UIImageJPEGRepresentation([DJP_VideoManager getThumbnailImage:url], 1);
+                [model save];
+                [self getLoadData];
                 AVPlayerViewController *playVC = [[AVPlayerViewController alloc] init];
                 playVC.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:url]];
                 AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -97,17 +107,18 @@
 - (UICollectionView*)collectionView{
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake((SCREEN_Width-15)/4-5, 120);
+        layout.itemSize = CGSizeMake((SCREEN_Width-15)/4-5, 110);
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         layout.headerReferenceSize = CGSizeMake(SCREEN_Width, 50);
-        layout.minimumLineSpacing = 10;
+        layout.minimumLineSpacing = 5;
         layout.minimumInteritemSpacing = 0;
         //        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, ScreenHeight) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, ScreenHeight-TAB_BAR_HEIGHT) collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.backgroundColor = [UIColor whiteColor];
+//        _collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paybg"]];
+        _collectionView.backgroundColor = [UIColor clearColor];
         [_collectionView registerNib:[UINib nibWithNibName:@"OnlineCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"OnlineCollectionCell"];
         [_collectionView registerNib:[UINib nibWithNibName:@"OnlineCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"OnlineCollectionReusableView"];
     }
@@ -129,19 +140,26 @@
 }
 - (void)getLoadData
 {
-    for (NSDictionary *dic in [OnlineMarkModel configData]) {
-        OnlineMarkModel *model = [[OnlineMarkModel alloc] init];
-        model.name = dic[@"name"];
-        model.urlStr = dic[@"urlStr"];
-        model.imgStr = dic[@"imgStr"];
-        [self.markDataArray addObject:model];
+    if (self.markDataArray.count) {
+        [self.markDataArray removeAllObjects];
+    }
+    for (OnlineMarkModel *model in [OnlineMarkModel findAll]) {
+          [self.markDataArray addObject:model];
     }
     [self.collectionView reloadData];
+    
+    if (self.historyDataArray.count) {
+          [self.historyDataArray removeAllObjects];
+      }
+      for (OnlinePlayModel *model in [OnlinePlayModel findAll]) {
+            [self.historyDataArray addObject:model];
+      }
+      [self.collectionView reloadData];
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     OnlineCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"OnlineCollectionReusableView" forIndexPath:indexPath];
-    NSArray *headerArr = @[@"我的标签",@"浏览记录"];
+    NSArray *headerArr = @[@"我的标签",@"在线播放记录"];
     header.titleLabel.text = headerArr[indexPath.section];
     header.interDownBlock = ^{
         NSLog(@"oooo%@",headerArr[indexPath.section]);
@@ -158,7 +176,7 @@
     }
     else
     {
-        return 4;
+        return self.historyDataArray.count;
     }
 }
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -172,16 +190,40 @@
     }
     else
     {
+        OnlinePlayModel *model = self.historyDataArray[indexPath.row];
         OnlineCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OnlineCollectionCell" forIndexPath:indexPath];
-              
+        cell.titlelabel.text = model.name;
+        if (model.imgData) {
+             cell.imgView.image = [UIImage imageWithData:model.imgData];
+        }
+        else
+        {
+            cell.imgView.image = [UIImage imageNamed:@"播放占位"];
+        }
               return cell;
     }
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    OnlineMarkModel *model = self.markDataArray[indexPath.row];
+    if (indexPath.section == 0) {
 
-    [self startWebViewWithUrlStr:model.urlStr];
+        OnlineMarkModel *model = self.markDataArray[indexPath.row];
+        [self startWebViewWithUrlStr:model.urlStr];
+    }
+    else
+    {
+        OnlinePlayModel *model = self.historyDataArray[indexPath.row];
+
+        //跳转到播放器
+             AVPlayerViewController *playVC = [[AVPlayerViewController alloc] init];
+             playVC.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:model.urlStr]];
+             AVAudioSession *session = [AVAudioSession sharedInstance];
+             [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
+             [self presentViewController:playVC animated:YES completion:^{
+                 
+             }];
+             [playVC.player play];
+    }
 }
 #pragma mark - webview
 - (UIWebView *)webView{
@@ -197,10 +239,18 @@
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     [self.progressLine startLoadingAnimation];
+    [AVPlayerItem startHook];
 }
-
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL * url = [request URL];
+    return YES;
+}
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [self.progressLine endLoadingAnimation];
+     self.markTitleStr = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    self.markUrl = [webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
+    self.searchBar.text = self.markUrl;
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -346,18 +396,30 @@
 - (void)handleWebView
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"视频云解析" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [AVPlayerItem startHook];
-        [SVProgressHUD showWithStatus:@"正在解析视频链接，请稍等"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            //            if ([[AvplayItemManger getInstance] getAVItemIsHook] == YES) {
-            //                [SVProgressHUD showErrorWithStatus:@"视频链接解析失败"];
-            //                [AVPlayerItem stopHook];
-            //            }
-        });
-    }]];
+//    [alertController addAction:[UIAlertAction actionWithTitle:@"视频云解析" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [AVPlayerItem startHook];
+//        [SVProgressHUD showWithStatus:@"正在解析视频链接，请稍等"];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            //            if ([[AvplayItemManger getInstance] getAVItemIsHook] == YES) {
+//            //                [SVProgressHUD showErrorWithStatus:@"视频链接解析失败"];
+//            //                [AVPlayerItem stopHook];
+//            //            }
+//        });
+//    }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"添加书签" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+         OnlineMarkModel *model = [OnlineMarkModel findFirstByCriteria:[NSString stringWithFormat:@"WHERE name = '%@'",self.markTitleStr]];
+        if (model.name.length) {
+            model.name = self.markTitleStr?self.markTitleStr:@"百度";
+                 model.urlStr = self.markUrl?self.markUrl:@"www.baidu.com";
+                 model.imgStr = @"百度";
+                 [model save];
+                 [self getLoadData];
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:@"该标签已存在"];
+        }
+     
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -529,5 +591,9 @@
     }
     return _historyTableView;
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [AVPlayerItem stopHook];
+}
 @end

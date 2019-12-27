@@ -48,17 +48,17 @@
 - (void)initView {
    
     //文件图片icon名
-    _imageV = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _imageV.layer.masksToBounds = YES;
-    _imageV.layer.cornerRadius = 5;
-    [self.contentView addSubview:_imageV];
+    _imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _imgView.layer.masksToBounds = YES;
+    _imgView.layer.cornerRadius = 5;
+    [self.contentView addSubview:_imgView];
 
     //文件大小
-       _sizeLab = [[UILabel alloc] initWithFrame:CGRectZero];
-       _sizeLab.numberOfLines = 0;
-       _sizeLab.font = [UIFont systemFontOfSize:13];
-    _sizeLab.textColor = KGrayColor;
-       [self.contentView addSubview:_sizeLab];
+       _sizeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+       _sizeLabel.numberOfLines = 0;
+       _sizeLabel.font = [UIFont systemFontOfSize:13];
+    _sizeLabel.textColor = KGrayColor;
+       [self.contentView addSubview:_sizeLabel];
     //文件名
     _nameLab = [[UILabel alloc] initWithFrame:CGRectZero];
     _nameLab.numberOfLines = 0;
@@ -66,12 +66,12 @@
     [self.contentView addSubview:_nameLab];
 
     //文件创建时间
-    _createTimeLab = [[UILabel alloc] initWithFrame:CGRectZero];
-    _createTimeLab.numberOfLines = 0;
-    _createTimeLab.font = [UIFont systemFontOfSize:13];
-    _createTimeLab.textColor = KGrayColor;
-    _createTimeLab.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:_createTimeLab];
+    _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _timeLabel.numberOfLines = 0;
+    _timeLabel.font = [UIFont systemFontOfSize:13];
+    _timeLabel.textColor = KGrayColor;
+    _timeLabel.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:_timeLabel];
 
    
 
@@ -87,17 +87,17 @@
 //实例化具体数据
 - (void)setModel:(DJP_CellModel *)model {
     _model = model;
-    _imageV.image = [UIImage imageNamed:model.iconName];
+    _imgView.image = [UIImage imageNamed:model.iconName];
     _selecedIcon.image = [UIImage imageNamed:@"selected-btn"];
     _unselecedIcon.image = [UIImage imageNamed:@"select-btn"];
     _nameLab.text = model.name;
-    _createTimeLab.text = model.createTime;
-    _sizeLab.text = model.size;
+    _timeLabel.text = model.createTime;
+    _sizeLabel.text = model.size;
 }
 
 //根据展示的type不同，改变元素布局
-- (void)setIsCell:(BOOL)isCell {
-    _isCell = isCell;
+- (void)setIsListCell:(BOOL)isCell {
+    _isListCell = isCell;
     if (isCell) {
         if (self.isSelected) {
             [self halfAlphaUI];
@@ -105,21 +105,21 @@
         } else {
             [self normalAlphaUI];
         }
-        _imageV.frame = CGRectMake((self.bounds.size.width - 50) / 2, (self.bounds.size.height - 50 - 15) / 3, 50, 50);
+        _imgView.frame = CGRectMake((self.bounds.size.width - 50) / 2, (self.bounds.size.height - 50 - 15) / 3, 50, 50);
         _nameLab.frame = CGRectMake(10, self.bounds.size.height / 3 * 2 + 5, self.bounds.size.width - 20, 15);
         _nameLab.textAlignment = NSTextAlignmentCenter;
         _nameLab.font = [UIFont systemFontOfSize:12];
-        _createTimeLab.frame = CGRectZero;
-        _sizeLab.frame = CGRectZero;
+        _timeLabel.frame = CGRectZero;
+        _sizeLabel.frame = CGRectZero;
         _unselecedIcon.frame = CGRectZero;
     } else {
         [self normalAlphaUI];
-        _imageV.frame = CGRectMake(10, (self.bounds.size.height - IMAGE_HEIGHT) / 2, IMAGE_WIDTH, IMAGE_HEIGHT);
+        _imgView.frame = CGRectMake(10, (self.bounds.size.height - IMAGE_HEIGHT) / 2, IMAGE_WIDTH, IMAGE_HEIGHT);
         _nameLab.frame = CGRectMake(92, 20, self.bounds.size.width - 92, NAMELAB_HEIGHT);
         _nameLab.font = [UIFont systemFontOfSize:18];
         _nameLab.textAlignment = NSTextAlignmentLeft;
-        _sizeLab.frame = CGRectMake(92, self.bounds.size.height - 25, SIZELAB_WIDTH, SIZELAB_HEIGHT);
-        _createTimeLab.frame = CGRectMake(self.bounds.size.width - TIMELAB_WIDTH - 10, self.bounds.size.height - 25, TIMELAB_WIDTH, TIMELAB_HEIGHT);
+        _sizeLabel.frame = CGRectMake(92, self.bounds.size.height - 25, SIZELAB_WIDTH, SIZELAB_HEIGHT);
+        _timeLabel.frame = CGRectMake(self.bounds.size.width - TIMELAB_WIDTH - 10, self.bounds.size.height - 25, TIMELAB_WIDTH, TIMELAB_HEIGHT);
         _selecedIcon.frame = CGRectZero;
         _unselecedIcon.frame = CGRectZero;
     }
@@ -129,7 +129,7 @@
 - (void)setIsEditing:(BOOL)isEditing {
     _isEditing = isEditing;
     if (isEditing) {
-        if (!_isCell) {
+        if (!_isListCell) {
             if (self.isSelected) {
                 [self normalAlphaUI];
                 _selecedIcon.frame = CGRectMake(EDIT_SPACE, (self.bounds.size.height - ICON_WIDTH) / 2, ICON_WIDTH, ICON_HEIGHT);
@@ -138,10 +138,10 @@
                 _unselecedIcon.frame = CGRectMake(EDIT_SPACE, (self.bounds.size.height - ICON_WIDTH) / 2, ICON_WIDTH, ICON_HEIGHT);
                 _unselecedIcon.alpha = 0.2;
             }
-            _imageV.frame = CGRectMake(ICON_WIDTH + EDIT_SPACE * 2, (self.bounds.size.height - IMAGE_HEIGHT) / 2, IMAGE_WIDTH, IMAGE_HEIGHT);
+            _imgView.frame = CGRectMake(ICON_WIDTH + EDIT_SPACE * 2, (self.bounds.size.height - IMAGE_HEIGHT) / 2, IMAGE_WIDTH, IMAGE_HEIGHT);
             _nameLab.frame = CGRectMake(ICON_WIDTH + IMAGE_WIDTH + EDIT_SPACE * 3, 20, NAMELAB_WIDTH, NAMELAB_HEIGHT);
-            _sizeLab.frame = CGRectMake(ICON_WIDTH + IMAGE_WIDTH + EDIT_SPACE * 3, self.bounds.size.height - 25, SIZELAB_WIDTH, SIZELAB_HEIGHT);
-            _createTimeLab.frame = CGRectMake(ICON_WIDTH + IMAGE_WIDTH + SIZELAB_WIDTH + EDIT_SPACE * 4, self.bounds.size.height - 25, TIMELAB_WIDTH, TIMELAB_HEIGHT);
+            _sizeLabel.frame = CGRectMake(ICON_WIDTH + IMAGE_WIDTH + EDIT_SPACE * 3, self.bounds.size.height - 25, SIZELAB_WIDTH, SIZELAB_HEIGHT);
+            _timeLabel.frame = CGRectMake(ICON_WIDTH + IMAGE_WIDTH + SIZELAB_WIDTH + EDIT_SPACE * 4, self.bounds.size.height - 25, TIMELAB_WIDTH, TIMELAB_HEIGHT);
         }
     }
 }
@@ -151,7 +151,7 @@
     [super setSelected:selected];
     if (_isEditing) {
         if (selected) {
-            if (_isCell) {
+            if (_isListCell) {
                 [self halfAlphaUI];
                 _selecedIcon.frame = CGRectMake(self.bounds.size.width - ICON_WIDTH - 2, self.bounds.size.height - ICON_HEIGHT - 2, ICON_WIDTH, ICON_HEIGHT);
             } else {
@@ -160,7 +160,7 @@
             }
             
         } else {
-            if (_isCell) {
+            if (_isListCell) {
                 [self normalAlphaUI];
             } else {
                 [self halfAlphaUI];

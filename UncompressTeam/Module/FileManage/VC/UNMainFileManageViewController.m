@@ -27,19 +27,19 @@
 {
     UICollectionViewFlowLayout *flowlayout;
     UNFileCollectionViewController *collectionController;
-    UIBarButtonItem *editBtn;
-    UIBarButtonItem *menuBtn;
-    UIBarButtonItem *backBtn;
-    UIBarButtonItem *deleteBtn;
-    UIBarButtonItem *spaceItem;
-    UIBarButtonItem *listBtn;
-    UIBarButtonItem *searchBtn;
-    UIBarButtonItem *addBtn;
-    UIBarButtonItem *copyBtn;
-    UIBarButtonItem *cuteBtn;
-    UIBarButtonItem *deleteBarBtn;
-    UIBarButtonItem *zipBtn;
-    UIBarButtonItem *saveBtn;
+    UIBarButtonItem *d_editBtn;
+    UIBarButtonItem *d_menuBtn;
+    UIBarButtonItem *d_backBtn;
+    UIBarButtonItem *d_deleteBtn;
+    UIBarButtonItem *d_spaceItem;
+    UIBarButtonItem *d_listBtn;
+    UIBarButtonItem *d_searchBtn;
+    UIBarButtonItem *d_addBtn;
+    UIBarButtonItem *d_copyBtn;
+    UIBarButtonItem *d_cuteBtn;
+    UIBarButtonItem *d_deleteBarBtn;
+    UIBarButtonItem *d_zipBtn;
+    UIBarButtonItem *d_saveBtn;
     UIView *lineView;
     AppDelegate *appDelegate;
     BOOL isDirectoryFirst;//是否勾选目录优先
@@ -217,18 +217,18 @@
            self.navigationItem.title = @"多多播放器";
        }
     
-    menuBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"liebiao"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSetting)];
+    d_menuBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"liebiao"] style:UIBarButtonItemStylePlain target:self action:@selector(pushSetting)];
     
-    listBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"liebiao"] style:UIBarButtonItemStylePlain target:self action:@selector(pop:)];
-       listBtn.tag = 0;
-    searchBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sousuo"] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
-    backBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
-       editBtn = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(pushEditView)];
-    self.navigationItem.rightBarButtonItem = editBtn;
+    d_listBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"liebiao"] style:UIBarButtonItemStylePlain target:self action:@selector(pop:)];
+       d_listBtn.tag = 0;
+    d_searchBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sousuo"] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
+    d_backBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+       d_editBtn = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(pushEditView)];
+    self.navigationItem.rightBarButtonItem = d_editBtn;
     if (self.sourcePath) {
-        self.navigationItem.leftBarButtonItem = backBtn;
+        self.navigationItem.leftBarButtonItem = d_backBtn;
     } else {
-        self.navigationItem.leftBarButtonItem = searchBtn;
+        self.navigationItem.leftBarButtonItem = d_searchBtn;
     }
 }
 
@@ -276,7 +276,7 @@
 #pragma mark 编辑
 -(void)initEditingView {
     [collectionController.collectionView reloadData];
-    [editBtn setTitle:@"完成"];
+    [d_editBtn setTitle:@"完成"];
     self.navigationItem.title = @"选择项目";
     self.selectAllBtn = [[UIBarButtonItem alloc] initWithTitle:@"全选" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllBtn:)];
     self.navigationItem.leftBarButtonItem = self.selectAllBtn;
@@ -285,12 +285,12 @@
     self.navigationController.toolbar.tintColor = ASOColorTheme;
     
     
-    spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    deleteBtn = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(handleData:)];
-    copyBtn = [[UIBarButtonItem alloc]initWithTitle:@"复制" style:UIBarButtonItemStylePlain  target:self action:@selector(handleData:)];
-    zipBtn = [[UIBarButtonItem alloc] initWithTitle:@"压缩" style:UIBarButtonItemStylePlain  target:self action:@selector(handleData:)];
-    saveBtn = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain  target:self action:@selector(handleData:)];
-    [self setToolbarItems:@[deleteBtn,spaceItem, copyBtn,spaceItem,  zipBtn,spaceItem, saveBtn] animated:YES];
+    d_spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    d_deleteBtn = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(handleData:)];
+    d_copyBtn = [[UIBarButtonItem alloc]initWithTitle:@"复制" style:UIBarButtonItemStylePlain  target:self action:@selector(handleData:)];
+    d_zipBtn = [[UIBarButtonItem alloc] initWithTitle:@"压缩" style:UIBarButtonItemStylePlain  target:self action:@selector(handleData:)];
+    d_saveBtn = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain  target:self action:@selector(handleData:)];
+    [self setToolbarItems:@[d_deleteBtn,d_spaceItem, d_copyBtn,d_spaceItem,  d_zipBtn,d_spaceItem, d_saveBtn] animated:YES];
    
 }
 //全选
@@ -565,11 +565,11 @@
 - (void)cancelSearch {
     self.navigationItem.titleView = nil;
     if (self.sourcePath) {
-        self.navigationItem.leftBarButtonItem = backBtn;
+        self.navigationItem.leftBarButtonItem = d_backBtn;
     } else {
-        self.navigationItem.leftBarButtonItem = searchBtn;
+        self.navigationItem.leftBarButtonItem = d_searchBtn;
     }
-    self.navigationItem.rightBarButtonItem = editBtn;
+    self.navigationItem.rightBarButtonItem = d_editBtn;
     collectionController.dataArr = dataArr;
     [collectionController.collectionView reloadData];
 }

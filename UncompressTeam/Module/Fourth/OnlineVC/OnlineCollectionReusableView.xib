@@ -15,17 +15,17 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQo-8i-l5o">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                    <rect key="frame" x="10" y="5" width="300" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的书签" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptK-WK-e0U">
-                            <rect key="frame" x="20" y="19.5" width="70" height="21"/>
+                            <rect key="frame" x="20" y="14.5" width="70" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co5-Z9-NQU">
-                            <rect key="frame" x="287" y="19" width="18" height="22"/>
-                            <state key="normal" image="arrow">
+                            <rect key="frame" x="274" y="14" width="11" height="22"/>
+                            <state key="normal" image="前进">
                                 <color key="titleColor" red="0.29574984310000002" green="0.68833595510000001" blue="0.99168258909999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -33,7 +33,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="ptK-WK-e0U" firstAttribute="leading" secondItem="jQo-8i-l5o" secondAttribute="leading" constant="20" id="319-uA-Cob"/>
                         <constraint firstAttribute="trailing" secondItem="Co5-Z9-NQU" secondAttribute="trailing" constant="15" id="PCW-xb-MDR"/>
@@ -43,13 +43,14 @@
                 </view>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="jQo-8i-l5o" secondAttribute="bottom" id="Xmo-5J-Wkn"/>
-                <constraint firstItem="jQo-8i-l5o" firstAttribute="leading" secondItem="9Gg-ye-v9C" secondAttribute="leading" id="ZN6-lz-4g7"/>
-                <constraint firstItem="jQo-8i-l5o" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="hH1-ki-Y30"/>
-                <constraint firstItem="9Gg-ye-v9C" firstAttribute="trailing" secondItem="jQo-8i-l5o" secondAttribute="trailing" id="rmr-FY-Wir"/>
+                <constraint firstAttribute="bottom" secondItem="jQo-8i-l5o" secondAttribute="bottom" constant="5" id="Xmo-5J-Wkn"/>
+                <constraint firstItem="jQo-8i-l5o" firstAttribute="leading" secondItem="9Gg-ye-v9C" secondAttribute="leading" constant="10" id="ZN6-lz-4g7"/>
+                <constraint firstItem="jQo-8i-l5o" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="5" id="hH1-ki-Y30"/>
+                <constraint firstItem="9Gg-ye-v9C" firstAttribute="trailing" secondItem="jQo-8i-l5o" secondAttribute="trailing" constant="10" id="rmr-FY-Wir"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="9Gg-ye-v9C"/>
             <connections>
+                <outlet property="bgView" destination="jQo-8i-l5o" id="Y1U-Ar-lbc"/>
                 <outlet property="interBtn" destination="Co5-Z9-NQU" id="YbR-je-6mk"/>
                 <outlet property="titleLabel" destination="ptK-WK-e0U" id="v3q-MZ-kFC"/>
             </connections>
@@ -57,6 +58,6 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="arrow" width="18" height="16"/>
+        <image name="前进" width="11" height="20"/>
     </resources>
 </document>

@@ -1,6 +1,6 @@
 #import "DJP_LoginViewController.h"
 #import "DJP_RegisterViewController.h"
-#import "MainTabVC.h"
+#import "DJP_MainTabVC.h"
 #import "DJP_LoginTool.h"
 #import "DJP_UserCenter.h"
 @interface DJP_LoginViewController ()
@@ -14,7 +14,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
+    self.view.backgroundColor = ASOColorTheme;
+    self.loginBtn.backgroundColor = ASOColorTheme;
+}
+- (IBAction)loginVCDisMiss:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -24,7 +28,7 @@
         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
         [SVProgressHUD dismissWithDelay:1.0];
         UIWindow *window = UIApplication.sharedApplication.keyWindow;
-        MainTabVC *root = [[MainTabVC alloc] init];
+        DJP_MainTabVC *root = [[DJP_MainTabVC alloc] init];
         window.rootViewController = root;
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{

@@ -19,6 +19,11 @@ typedef void (^ReturnVideoPath)(NSString *newPath);
 
 @interface DJP_VideoManager : NSObject
 
+/// 网络锁视频获取缩略图
+/// @param videoURL 视频链接
++(UIImage *)getThumbnailImage:(NSString *)videoURL;
+
+
 /**
 *  获取视频的缩略图方法
 *

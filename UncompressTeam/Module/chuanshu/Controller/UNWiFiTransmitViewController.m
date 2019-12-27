@@ -7,13 +7,11 @@
 //
 
 #import "UNWiFiTransmitViewController.h"
-#import "WiFiTransmitTableViewCell.h"
-#import "TitleSwitchTableViewCell.h"
+#import "DJWiFiTransmitTableViewCell.h"
+#import "DJTitleSwitchTableViewCell.h"
 #import "GCDWebUploader.h"
 #import "GCDWebServerDataResponse.h"
-//#import <HTTPServer.h>
-//#import "UNHmHTTPConnection.h"
-//#import "UNHmTool.h"
+
 @interface UNWiFiTransmitViewController ()<UITableViewDelegate, UITableViewDataSource,GCDWebUploaderDelegate>
 {
     GCDWebUploader *_webServer;
@@ -21,6 +19,7 @@
 @property (nonatomic,strong) UITableView *myTableView;
 @property (nonatomic, assign) BOOL isOpen;
 @property (nonatomic, copy) NSString *urlString;
+@property (nonatomic ,strong) UIView *headView;
 
 @end
 
@@ -37,16 +36,27 @@
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        tableView.tableHeaderView = self.headView;
         tableView.rowHeight = 80;
         [self.view addSubview:tableView];
         tableView;
     });
-    [_myTableView registerNib:[UINib nibWithNibName:@"WiFiTransmitTableViewCell" bundle:nil] forCellReuseIdentifier:@"WiFiTransmitTableViewCell"];
-    [_myTableView registerNib:[UINib nibWithNibName:@"TitleSwitchTableViewCell" bundle:nil] forCellReuseIdentifier:@"TitleSwitchTableViewCell"];
+    [_myTableView registerNib:[UINib nibWithNibName:@"DJWiFiTransmitTableViewCell" bundle:nil] forCellReuseIdentifier:@"DJWiFiTransmitTableViewCell"];
+    [_myTableView registerNib:[UINib nibWithNibName:@"DJTitleSwitchTableViewCell" bundle:nil] forCellReuseIdentifier:@"DJTitleSwitchTableViewCell"];
     [_myTableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"HEADER"];
 
 }
-
+-(UIView *)headView
+{
+    if (!_headView) {
+        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 200*(SCREEN_Width/375))];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 200*(SCREEN_Width/375))];
+        imageView.image = [UIImage imageNamed:@"wifiBG"];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        [_headView addSubview:imageView];
+    }
+    return _headView;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
 }
@@ -71,19 +81,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0 ) {
-        TitleSwitchTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"TitleSwitchTableViewCell" forIndexPath:indexPath];
+        DJTitleSwitchTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"DJTitleSwitchTableViewCell" forIndexPath:indexPath];
         cell.titleLabel.text = @"如需Wi-Fi共享服务，请打开开关。";
         cell.mySwith.hidden = YES;
         return cell;
     } else if (indexPath.row == 1) {
-        TitleSwitchTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"TitleSwitchTableViewCell" forIndexPath:indexPath];
+        DJTitleSwitchTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"DJTitleSwitchTableViewCell" forIndexPath:indexPath];
         cell.titleLabel.text = @"开启";
         [cell.mySwith addTarget:self action:@selector(valueChanged:) forControlEvents:(UIControlEventValueChanged)];
         cell.mySwith.hidden = NO;
         cell.mySwith.on = self.isOpen;
         return cell;
     } else if (indexPath.row == 2) {
-        WiFiTransmitTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"WiFiTransmitTableViewCell" forIndexPath:indexPath];
+        DJWiFiTransmitTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"DJWiFiTransmitTableViewCell" forIndexPath:indexPath];
         if (self.isOpen) {
             cell.titleLabel.text = self.urlString;
             cell.titleLabel.textColor = ASOColorTheme;

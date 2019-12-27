@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import <UMCommon/UMCommon.h>
-#import "MainTabVC.h"
+#import "DJP_MainTabVC.h"
+#import "OnlineMarkModel.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -23,7 +24,7 @@
 //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_viewController];
 //    self.window.rootViewController = nav;
 //
-    MainTabVC *main = [[MainTabVC alloc] init];
+    DJP_MainTabVC *main = [[DJP_MainTabVC alloc] init];
     self.window.rootViewController = main;
     [self.window makeKeyAndVisible];
         
@@ -39,6 +40,13 @@
 - (void)addDefaultFile{
  
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isFirst"] integerValue]==0) {
+        for (NSDictionary *dic in [OnlineMarkModel configData]) {
+               OnlineMarkModel *model = [[OnlineMarkModel alloc] init];
+               model.name = dic[@"name"];
+               model.urlStr = dic[@"urlStr"];
+               model.imgStr = dic[@"imgStr"];
+               [model save];
+           }
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"zip"];
          NSData *data = [NSData dataWithContentsOfFile:filePath];
          [data writeToFile:[DocumentsPath stringByAppendingPathComponent:@"demo.zip"] atomically:YES];

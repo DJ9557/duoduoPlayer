@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OnlineCollectionCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *titlelabel;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 

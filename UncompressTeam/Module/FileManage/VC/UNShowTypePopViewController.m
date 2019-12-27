@@ -7,7 +7,7 @@
 //
 
 #import "UNShowTypePopViewController.h"
-#import "PopViewCell.h"
+#import "DJPopViewCell.h"
 
 #define BLUECOLOR [UIColor colorWithDisplayP3Red:51/255.0 green:171/255.0 blue:238/255.0 alpha:1]
 #define TABLE_WIDTH 110
@@ -65,7 +65,7 @@
     self.tableView.dataSource = self;
     self.tableView.scrollEnabled = NO;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.tableView registerNib:[UINib nibWithNibName:@"PopViewCell" bundle:nil] forCellReuseIdentifier:@"PopCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DJPopViewCell" bundle:nil] forCellReuseIdentifier:@"DJPopCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,7 +82,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PopViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PopCell" forIndexPath:indexPath];
+    DJPopViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DJPopCell" forIndexPath:indexPath];
     switch (btnTag) {
         case 0:
             cell.popImage.image = [UIImage imageNamed:imageArr[[indexPath row]]];

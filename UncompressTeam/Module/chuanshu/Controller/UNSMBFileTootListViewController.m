@@ -8,7 +8,7 @@
 
 #import "UNSMBFileTootListViewController.h"
 #import "DJP_SMBManager.h"
-#import "SMBFileTootListTableViewCell.h"
+#import "DJSMBFileTootListTableViewCell.h"
 #import "DJP_SMBListFileViewController.h"
 @interface UNSMBFileTootListViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic,strong) UITableView *myTableView;
@@ -31,7 +31,7 @@
         [self.view addSubview:tableView];
         tableView;
     });
-    [_myTableView registerNib:[UINib nibWithNibName:@"SMBFileTootListTableViewCell" bundle:nil] forCellReuseIdentifier:@"SMBFileTootListTableViewCell"];
+    [_myTableView registerNib:[UINib nibWithNibName:@"DJSMBFileTootListTableViewCell" bundle:nil] forCellReuseIdentifier:@"DJSMBFileTootListTableViewCell"];
 //    [_myTableView registerNib:[UINib nibWithNibName:@"SMBSection1TableViewCell" bundle:nil] forCellReuseIdentifier:@"SMBSection1TableViewCell"];
     [_myTableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"HEADER"];
     [self findSMB];
@@ -84,7 +84,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SMBFileTootListTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"SMBFileTootListTableViewCell" forIndexPath:indexPath];
+    DJSMBFileTootListTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:@"DJSMBFileTootListTableViewCell" forIndexPath:indexPath];
     SMBShare *share = [self.dataArray objectAtIndex:indexPath.row];
     cell.nameLabel.text = share.name;
     [cell.iconImageView setImage:[UIImage imageNamed:@"fileIcon_small"]];

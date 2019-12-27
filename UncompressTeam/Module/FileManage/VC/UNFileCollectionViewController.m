@@ -54,7 +54,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.frame = CGRectMake(0, 50, KScreenWidth, ScreenHeight-50);
-    [self initData];
+    [self d_initData];
     //默认表格视图
     self.isCell = NO;
     flowlayout = [[UICollectionViewFlowLayout alloc] init];
@@ -69,7 +69,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     [self.collectionView registerClass:[UNCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
-- (void)initData {
+- (void)d_initData {
     self.isEditing = NO;
     self.selectedNum = 0;
     dataModel = [[DJP_DataModel alloc] initWithPath:self.filePath];
@@ -107,22 +107,22 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
     DJP_CellModel *model = self.dataArr[indexPath.row];
     UNCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
      cell.nameLab.text = model.name;
-    cell.createTimeLab.text = model.createTime;
-    cell.sizeLab.text = model.size;
+    cell.timeLabel.text = model.createTime;
+    cell.sizeLabel.text = model.size;
     UIImage *videoImage = [DJP_VideoManager getScreenShotImageFromVideoPath:model.urlPath];
-    cell.imageV.clipsToBounds = YES;
+    cell.imgView.clipsToBounds = YES;
     cell.model = model;
    if ([model.iconName isEqualToString:@MP4]||[model.iconName isEqualToString:@MP3]) {
-          cell.imageV.image = videoImage;
-          cell.imageV.contentMode = UIViewContentModeScaleAspectFill;
-          cell.imageV.hidden = NO;
+          cell.imgView.image = videoImage;
+          cell.imgView.contentMode = UIViewContentModeScaleAspectFill;
+          cell.imgView.hidden = NO;
       }
       else
       {
-          cell.imageV.contentMode = UIViewContentModeScaleAspectFit;
-          cell.imageV.image = [UIImage imageNamed:model.iconName];
+          cell.imgView.contentMode = UIViewContentModeScaleAspectFit;
+          cell.imgView.image = [UIImage imageNamed:model.iconName];
       }
-    cell.isCell = self.isCell;
+    cell.isListCell = self.isCell;
     cell.isEditing = self.isEditing;
     cell.backgroundColor = [UIColor whiteColor];
     if (self.isCell) {

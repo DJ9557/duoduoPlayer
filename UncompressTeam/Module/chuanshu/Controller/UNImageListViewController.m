@@ -28,8 +28,8 @@
         [self.view addSubview:tableView];
         tableView;
     });
-    [_myTableView registerNib:[UINib nibWithNibName:@"WiFiTransmitTableViewCell" bundle:nil] forCellReuseIdentifier:@"WiFiTransmitTableViewCell"];
-    [_myTableView registerNib:[UINib nibWithNibName:@"TitleSwitchTableViewCell" bundle:nil] forCellReuseIdentifier:@"TitleSwitchTableViewCell"];
+    [_myTableView registerNib:[UINib nibWithNibName:@"DJWiFiTransmitTableViewCell" bundle:nil] forCellReuseIdentifier:@"DJWiFiTransmitTableViewCell"];
+    [_myTableView registerNib:[UINib nibWithNibName:@"DJTitleSwitchTableViewCell" bundle:nil] forCellReuseIdentifier:@"DJTitleSwitchTableViewCell"];
     [_myTableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"HEADER"];
 }
 

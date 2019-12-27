@@ -43,11 +43,11 @@
 		04561EE7238D0C3400B3D644 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561EE1238D0C3400B3D644 /* NSString+Hash.m */; };
 		04561EEC238E180A00B3D644 /* UNiCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561EEB238E180A00B3D644 /* UNiCloudManager.m */; };
 		04561EEF238E185900B3D644 /* DJP_Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561EEE238E185900B3D644 /* DJP_Document.m */; };
-		04561EF6238E4BE200B3D644 /* ImageTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561EF4238E4BE200B3D644 /* ImageTitleTableViewCell.m */; };
-		04561EF7238E4BE200B3D644 /* ImageTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04561EF5238E4BE200B3D644 /* ImageTitleTableViewCell.xib */; };
+		04561EF6238E4BE200B3D644 /* DJImageTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561EF4238E4BE200B3D644 /* DJImageTitleTableViewCell.m */; };
+		04561EF7238E4BE200B3D644 /* DJImageTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04561EF5238E4BE200B3D644 /* DJImageTitleTableViewCell.xib */; };
 		04561EFA238E675100B3D644 /* UNImageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561EF9238E675100B3D644 /* UNImageListViewController.m */; };
-		04561EFE238E6DB600B3D644 /* ImageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561EFC238E6DB600B3D644 /* ImageListTableViewCell.m */; };
-		04561EFF238E6DB600B3D644 /* ImageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04561EFD238E6DB600B3D644 /* ImageListTableViewCell.xib */; };
+		04561EFE238E6DB600B3D644 /* DJImageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561EFC238E6DB600B3D644 /* DJImageListTableViewCell.m */; };
+		04561EFF238E6DB600B3D644 /* DJImageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04561EFD238E6DB600B3D644 /* DJImageListTableViewCell.xib */; };
 		04561F90238F649100B3D644 /* SMBFileServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561F6B238F649100B3D644 /* SMBFileServer.m */; };
 		04561F91238F649100B3D644 /* SMBDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561F6C238F649100B3D644 /* SMBDevice.m */; };
 		04561F92238F649100B3D644 /* SMBFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561F6E238F649100B3D644 /* SMBFile.m */; };
@@ -56,10 +56,10 @@
 		04561F96238F649100B3D644 /* SMBDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561F78238F649100B3D644 /* SMBDiscovery.m */; };
 		04561F9D238F64CD00B3D644 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04561F9C238F64CD00B3D644 /* libiconv.tbd */; };
 		04561F9F238F64DF00B3D644 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04561F9E238F64DF00B3D644 /* libiconv.tbd */; };
-		04561FA3238F67A900B3D644 /* SMBSection0TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561FA1238F67A900B3D644 /* SMBSection0TableViewCell.m */; };
-		04561FA4238F67A900B3D644 /* SMBSection0TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04561FA2238F67A900B3D644 /* SMBSection0TableViewCell.xib */; };
-		04561FA8238F67C000B3D644 /* SMBSection1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561FA6238F67C000B3D644 /* SMBSection1TableViewCell.m */; };
-		04561FA9238F67C000B3D644 /* SMBSection1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04561FA7238F67C000B3D644 /* SMBSection1TableViewCell.xib */; };
+		04561FA3238F67A900B3D644 /* DJSMBSection0TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561FA1238F67A900B3D644 /* DJSMBSection0TableViewCell.m */; };
+		04561FA4238F67A900B3D644 /* DJSMBSection0TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04561FA2238F67A900B3D644 /* DJSMBSection0TableViewCell.xib */; };
+		04561FA8238F67C000B3D644 /* DJSMBSection1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561FA6238F67C000B3D644 /* DJSMBSection1TableViewCell.m */; };
+		04561FA9238F67C000B3D644 /* DJSMBSection1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04561FA7238F67C000B3D644 /* DJSMBSection1TableViewCell.xib */; };
 		04561FAC238F681F00B3D644 /* UNSMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561FAB238F681F00B3D644 /* UNSMBViewController.m */; };
 		04698D81238FE4A90070DFF4 /* UNShowImageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 047D1CDD238FA62000F9E494 /* UNShowImageViewController.h */; };
 		04698D82238FE4A90070DFF4 /* UNShowImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D1CD8238FA62000F9E494 /* UNShowImageViewController.m */; };
@@ -68,10 +68,10 @@
 		04698D85238FE4A90070DFF4 /* UNPickPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D1CDA238FA62000F9E494 /* UNPickPhotoViewController.m */; };
 		046ADF92238CCBB70098AF3F /* UNiTunesDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046ADF91238CCBB70098AF3F /* UNiTunesDownloadViewController.m */; };
 		046ADF95238CD0230098AF3F /* UNWiFiTransmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046ADF94238CD0230098AF3F /* UNWiFiTransmitViewController.m */; };
-		046ADF9B238CD5E30098AF3F /* WiFiTransmitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046ADF99238CD5E30098AF3F /* WiFiTransmitTableViewCell.m */; };
-		046ADF9C238CD5E30098AF3F /* WiFiTransmitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046ADF9A238CD5E30098AF3F /* WiFiTransmitTableViewCell.xib */; };
-		046ADFA0238CF9750098AF3F /* TitleSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046ADF9E238CF9750098AF3F /* TitleSwitchTableViewCell.m */; };
-		046ADFA1238CF9750098AF3F /* TitleSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046ADF9F238CF9750098AF3F /* TitleSwitchTableViewCell.xib */; };
+		046ADF9B238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046ADF99238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.m */; };
+		046ADF9C238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046ADF9A238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.xib */; };
+		046ADFA0238CF9750098AF3F /* DJTitleSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046ADF9E238CF9750098AF3F /* DJTitleSwitchTableViewCell.m */; };
+		046ADFA1238CF9750098AF3F /* DJTitleSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046ADF9F238CF9750098AF3F /* DJTitleSwitchTableViewCell.xib */; };
 		04732DFD23B386A8001D8C64 /* NSObject+MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04732DF923B386A8001D8C64 /* NSObject+MethodSwizzle.m */; };
 		04732DFE23B386A8001D8C64 /* AVPlayerItem+Hook.m in Sources */ = {isa = PBXBuildFile; fileRef = 04732DFC23B386A8001D8C64 /* AVPlayerItem+Hook.m */; };
 		04732E0623B45763001D8C64 /* AvplayItemManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 04732E0523B45763001D8C64 /* AvplayItemManger.m */; };
@@ -87,13 +87,14 @@
 		04732E2723B4D899001D8C64 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04732E1F23B4D899001D8C64 /* FMDatabasePool.m */; };
 		04732E2823B4D899001D8C64 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04732E2023B4D899001D8C64 /* FMResultSet.m */; };
 		04732E2B23B4D8CD001D8C64 /* OnlineMarkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04732E2A23B4D8CD001D8C64 /* OnlineMarkModel.m */; };
+		04732E2E23B60CE0001D8C64 /* OnlinePlayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04732E2D23B60CDF001D8C64 /* OnlinePlayModel.m */; };
 		047C54C5238F822800029E36 /* DJP_SMBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C54C4238F822800029E36 /* DJP_SMBManager.m */; };
 		047C54C8238F841500029E36 /* UNSMBFileTootListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C54C7238F841500029E36 /* UNSMBFileTootListViewController.m */; };
-		047C54CD238F9F5600029E36 /* SMBFileTootListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C54CB238F9F5600029E36 /* SMBFileTootListTableViewCell.m */; };
-		047C54CE238F9F5600029E36 /* SMBFileTootListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047C54CC238F9F5600029E36 /* SMBFileTootListTableViewCell.xib */; };
+		047C54CD238F9F5600029E36 /* DJSMBFileTootListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C54CB238F9F5600029E36 /* DJSMBFileTootListTableViewCell.m */; };
+		047C54CE238F9F5600029E36 /* DJSMBFileTootListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047C54CC238F9F5600029E36 /* DJSMBFileTootListTableViewCell.xib */; };
 		047C54D1238FA30500029E36 /* DJP_SMBListFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C54D0238FA30500029E36 /* DJP_SMBListFileViewController.m */; };
 		047C54D72390BBD500029E36 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C54D62390BBD500029E36 /* PayViewController.m */; };
-		047C54DA2390C51200029E36 /* SecondHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C54D92390C51200029E36 /* SecondHeaderView.m */; };
+		047C54DA2390C51200029E36 /* DJSecondHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047C54D92390C51200029E36 /* DJSecondHeaderView.m */; };
 		047D1CD6238D35F900F9E494 /* UNMainFileManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4CF12238D299000B9E3D8 /* UNMainFileManageViewController.m */; };
 		047D1CE3238FA62000F9E494 /* UNPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D1CDB238FA62000F9E494 /* UNPhotoCell.m */; };
 		047D1CE4238FA62000F9E494 /* ZLPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D1CDC238FA62000F9E494 /* ZLPhotoHelper.m */; };
@@ -130,7 +131,7 @@
 		048E3D3623ACD54C004C2DD5 /* GCDWebUploader.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 048E3D2623ACD54C004C2DD5 /* GCDWebUploader.bundle */; };
 		048E3D3723ACD54C004C2DD5 /* GCDWebUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E3D2823ACD54C004C2DD5 /* GCDWebUploader.m */; };
 		048E3D3F23B0AB73004C2DD5 /* DJP_MainNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E3D3923B0AB72004C2DD5 /* DJP_MainNavController.m */; };
-		048E3D4123B0AB73004C2DD5 /* MainTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E3D3E23B0AB72004C2DD5 /* MainTabVC.m */; };
+		048E3D4123B0AB73004C2DD5 /* DJP_MainTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E3D3E23B0AB72004C2DD5 /* DJP_MainTabVC.m */; };
 		048E3D4723B0BC56004C2DD5 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E3D4423B0BC56004C2DD5 /* UIColor+Hex.m */; };
 		048E3D4823B0BC56004C2DD5 /* PPVideo_CoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E3D4623B0BC56004C2DD5 /* PPVideo_CoverView.m */; };
 		04B2C571238230760049F5F0 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B2C56F238230760049F5F0 /* UIBarButtonItem+Extension.m */; };
@@ -151,9 +152,9 @@
 		04D4CEEA238D10F300B9E3D8 /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04D4CEE9238D10F300B9E3D8 /* Resources.bundle */; };
 		04D4CF06238D27B600B9E3D8 /* UNFileCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4CEEE238D27B600B9E3D8 /* UNFileCollectionViewController.m */; };
 		04D4CF08238D27B600B9E3D8 /* UNShowTypePopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4CEF3238D27B600B9E3D8 /* UNShowTypePopViewController.m */; };
-		04D4CF09238D27B600B9E3D8 /* PopViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D4CEF7238D27B600B9E3D8 /* PopViewCell.xib */; };
+		04D4CF09238D27B600B9E3D8 /* DJPopViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D4CEF7238D27B600B9E3D8 /* DJPopViewCell.xib */; };
 		04D4CF0A238D27B600B9E3D8 /* UNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4CEF8238D27B600B9E3D8 /* UNCollectionViewCell.m */; };
-		04D4CF0B238D27B600B9E3D8 /* PopViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4CEF9238D27B600B9E3D8 /* PopViewCell.m */; };
+		04D4CF0B238D27B600B9E3D8 /* DJPopViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4CEF9238D27B600B9E3D8 /* DJPopViewCell.m */; };
 		04D4CF0C238D27B600B9E3D8 /* UNFileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4CEFB238D27B600B9E3D8 /* UNFileManagerTool.m */; };
 		04D4CF0D238D27B600B9E3D8 /* UNFileSystemHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4CEFC238D27B600B9E3D8 /* UNFileSystemHandle.m */; };
 		04D4CF0E238D27B600B9E3D8 /* DJP_CellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4CEFD238D27B600B9E3D8 /* DJP_CellModel.m */; };
@@ -237,14 +238,14 @@
 		04561EEB238E180A00B3D644 /* UNiCloudManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNiCloudManager.m; sourceTree = "<group>"; };
 		04561EED238E185900B3D644 /* DJP_Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJP_Document.h; sourceTree = "<group>"; };
 		04561EEE238E185900B3D644 /* DJP_Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJP_Document.m; sourceTree = "<group>"; };
-		04561EF3238E4BE200B3D644 /* ImageTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageTitleTableViewCell.h; sourceTree = "<group>"; };
-		04561EF4238E4BE200B3D644 /* ImageTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageTitleTableViewCell.m; sourceTree = "<group>"; };
-		04561EF5238E4BE200B3D644 /* ImageTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTitleTableViewCell.xib; sourceTree = "<group>"; };
+		04561EF3238E4BE200B3D644 /* DJImageTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJImageTitleTableViewCell.h; sourceTree = "<group>"; };
+		04561EF4238E4BE200B3D644 /* DJImageTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJImageTitleTableViewCell.m; sourceTree = "<group>"; };
+		04561EF5238E4BE200B3D644 /* DJImageTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJImageTitleTableViewCell.xib; sourceTree = "<group>"; };
 		04561EF8238E675100B3D644 /* UNImageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UNImageListViewController.h; sourceTree = "<group>"; };
 		04561EF9238E675100B3D644 /* UNImageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNImageListViewController.m; sourceTree = "<group>"; };
-		04561EFB238E6DB600B3D644 /* ImageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageListTableViewCell.h; sourceTree = "<group>"; };
-		04561EFC238E6DB600B3D644 /* ImageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageListTableViewCell.m; sourceTree = "<group>"; };
-		04561EFD238E6DB600B3D644 /* ImageListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageListTableViewCell.xib; sourceTree = "<group>"; };
+		04561EFB238E6DB600B3D644 /* DJImageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJImageListTableViewCell.h; sourceTree = "<group>"; };
+		04561EFC238E6DB600B3D644 /* DJImageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJImageListTableViewCell.m; sourceTree = "<group>"; };
+		04561EFD238E6DB600B3D644 /* DJImageListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJImageListTableViewCell.xib; sourceTree = "<group>"; };
 		04561F69238F649100B3D644 /* SMBShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBShare.h; sourceTree = "<group>"; };
 		04561F6A238F649100B3D644 /* SMBFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBFile.h; sourceTree = "<group>"; };
 		04561F6B238F649100B3D644 /* SMBFileServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMBFileServer.m; sourceTree = "<group>"; };
@@ -263,24 +264,24 @@
 		04561F7A238F649100B3D644 /* SMBFileServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMBFileServer.h; sourceTree = "<group>"; };
 		04561F9C238F64CD00B3D644 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		04561F9E238F64DF00B3D644 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		04561FA0238F67A900B3D644 /* SMBSection0TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMBSection0TableViewCell.h; sourceTree = "<group>"; };
-		04561FA1238F67A900B3D644 /* SMBSection0TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMBSection0TableViewCell.m; sourceTree = "<group>"; };
-		04561FA2238F67A900B3D644 /* SMBSection0TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SMBSection0TableViewCell.xib; sourceTree = "<group>"; };
-		04561FA5238F67C000B3D644 /* SMBSection1TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMBSection1TableViewCell.h; sourceTree = "<group>"; };
-		04561FA6238F67C000B3D644 /* SMBSection1TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMBSection1TableViewCell.m; sourceTree = "<group>"; };
-		04561FA7238F67C000B3D644 /* SMBSection1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SMBSection1TableViewCell.xib; sourceTree = "<group>"; };
+		04561FA0238F67A900B3D644 /* DJSMBSection0TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSMBSection0TableViewCell.h; sourceTree = "<group>"; };
+		04561FA1238F67A900B3D644 /* DJSMBSection0TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSMBSection0TableViewCell.m; sourceTree = "<group>"; };
+		04561FA2238F67A900B3D644 /* DJSMBSection0TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJSMBSection0TableViewCell.xib; sourceTree = "<group>"; };
+		04561FA5238F67C000B3D644 /* DJSMBSection1TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSMBSection1TableViewCell.h; sourceTree = "<group>"; };
+		04561FA6238F67C000B3D644 /* DJSMBSection1TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSMBSection1TableViewCell.m; sourceTree = "<group>"; };
+		04561FA7238F67C000B3D644 /* DJSMBSection1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJSMBSection1TableViewCell.xib; sourceTree = "<group>"; };
 		04561FAA238F681F00B3D644 /* UNSMBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UNSMBViewController.h; sourceTree = "<group>"; };
 		04561FAB238F681F00B3D644 /* UNSMBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNSMBViewController.m; sourceTree = "<group>"; };
 		046ADF90238CCBB70098AF3F /* UNiTunesDownloadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UNiTunesDownloadViewController.h; sourceTree = "<group>"; };
 		046ADF91238CCBB70098AF3F /* UNiTunesDownloadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNiTunesDownloadViewController.m; sourceTree = "<group>"; };
 		046ADF93238CD0230098AF3F /* UNWiFiTransmitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UNWiFiTransmitViewController.h; sourceTree = "<group>"; };
 		046ADF94238CD0230098AF3F /* UNWiFiTransmitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNWiFiTransmitViewController.m; sourceTree = "<group>"; };
-		046ADF98238CD5E30098AF3F /* WiFiTransmitTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WiFiTransmitTableViewCell.h; sourceTree = "<group>"; };
-		046ADF99238CD5E30098AF3F /* WiFiTransmitTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WiFiTransmitTableViewCell.m; sourceTree = "<group>"; };
-		046ADF9A238CD5E30098AF3F /* WiFiTransmitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WiFiTransmitTableViewCell.xib; sourceTree = "<group>"; };
-		046ADF9D238CF9750098AF3F /* TitleSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleSwitchTableViewCell.h; sourceTree = "<group>"; };
-		046ADF9E238CF9750098AF3F /* TitleSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleSwitchTableViewCell.m; sourceTree = "<group>"; };
-		046ADF9F238CF9750098AF3F /* TitleSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSwitchTableViewCell.xib; sourceTree = "<group>"; };
+		046ADF98238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJWiFiTransmitTableViewCell.h; sourceTree = "<group>"; };
+		046ADF99238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJWiFiTransmitTableViewCell.m; sourceTree = "<group>"; };
+		046ADF9A238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJWiFiTransmitTableViewCell.xib; sourceTree = "<group>"; };
+		046ADF9D238CF9750098AF3F /* DJTitleSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTitleSwitchTableViewCell.h; sourceTree = "<group>"; };
+		046ADF9E238CF9750098AF3F /* DJTitleSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTitleSwitchTableViewCell.m; sourceTree = "<group>"; };
+		046ADF9F238CF9750098AF3F /* DJTitleSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJTitleSwitchTableViewCell.xib; sourceTree = "<group>"; };
 		04732DF923B386A8001D8C64 /* NSObject+MethodSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MethodSwizzle.m"; sourceTree = "<group>"; };
 		04732DFA23B386A8001D8C64 /* AVPlayerItem+Hook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVPlayerItem+Hook.h"; sourceTree = "<group>"; };
 		04732DFB23B386A8001D8C64 /* NSObject+MethodSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MethodSwizzle.h"; sourceTree = "<group>"; };
@@ -310,19 +311,21 @@
 		04732E2123B4D899001D8C64 /* JKDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKDBHelper.h; sourceTree = "<group>"; };
 		04732E2923B4D8CD001D8C64 /* OnlineMarkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnlineMarkModel.h; sourceTree = "<group>"; };
 		04732E2A23B4D8CD001D8C64 /* OnlineMarkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnlineMarkModel.m; sourceTree = "<group>"; };
+		04732E2C23B60CDF001D8C64 /* OnlinePlayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnlinePlayModel.h; sourceTree = "<group>"; };
+		04732E2D23B60CDF001D8C64 /* OnlinePlayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnlinePlayModel.m; sourceTree = "<group>"; };
 		047C54C3238F822800029E36 /* DJP_SMBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJP_SMBManager.h; sourceTree = "<group>"; };
 		047C54C4238F822800029E36 /* DJP_SMBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJP_SMBManager.m; sourceTree = "<group>"; };
 		047C54C6238F841500029E36 /* UNSMBFileTootListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UNSMBFileTootListViewController.h; sourceTree = "<group>"; };
 		047C54C7238F841500029E36 /* UNSMBFileTootListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNSMBFileTootListViewController.m; sourceTree = "<group>"; };
-		047C54CA238F9F5600029E36 /* SMBFileTootListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMBFileTootListTableViewCell.h; sourceTree = "<group>"; };
-		047C54CB238F9F5600029E36 /* SMBFileTootListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMBFileTootListTableViewCell.m; sourceTree = "<group>"; };
-		047C54CC238F9F5600029E36 /* SMBFileTootListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SMBFileTootListTableViewCell.xib; sourceTree = "<group>"; };
+		047C54CA238F9F5600029E36 /* DJSMBFileTootListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSMBFileTootListTableViewCell.h; sourceTree = "<group>"; };
+		047C54CB238F9F5600029E36 /* DJSMBFileTootListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSMBFileTootListTableViewCell.m; sourceTree = "<group>"; };
+		047C54CC238F9F5600029E36 /* DJSMBFileTootListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJSMBFileTootListTableViewCell.xib; sourceTree = "<group>"; };
 		047C54CF238FA30500029E36 /* DJP_SMBListFileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJP_SMBListFileViewController.h; sourceTree = "<group>"; };
 		047C54D0238FA30500029E36 /* DJP_SMBListFileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJP_SMBListFileViewController.m; sourceTree = "<group>"; };
 		047C54D52390BBD500029E36 /* PayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
 		047C54D62390BBD500029E36 /* PayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
-		047C54D82390C51200029E36 /* SecondHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondHeaderView.h; sourceTree = "<group>"; };
-		047C54D92390C51200029E36 /* SecondHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondHeaderView.m; sourceTree = "<group>"; };
+		047C54D82390C51200029E36 /* DJSecondHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSecondHeaderView.h; sourceTree = "<group>"; };
+		047C54D92390C51200029E36 /* DJSecondHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSecondHeaderView.m; sourceTree = "<group>"; };
 		047D1CD8238FA62000F9E494 /* UNShowImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNShowImageViewController.m; sourceTree = "<group>"; };
 		047D1CD9238FA62000F9E494 /* ZLPhotoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoHelper.h; sourceTree = "<group>"; };
 		047D1CDA238FA62000F9E494 /* UNPickPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNPickPhotoViewController.m; sourceTree = "<group>"; };
@@ -388,9 +391,9 @@
 		048E3D2723ACD54C004C2DD5 /* GCDWebUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebUploader.h; sourceTree = "<group>"; };
 		048E3D2823ACD54C004C2DD5 /* GCDWebUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebUploader.m; sourceTree = "<group>"; };
 		048E3D3923B0AB72004C2DD5 /* DJP_MainNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJP_MainNavController.m; sourceTree = "<group>"; };
-		048E3D3B23B0AB72004C2DD5 /* MainTabVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabVC.h; sourceTree = "<group>"; };
+		048E3D3B23B0AB72004C2DD5 /* DJP_MainTabVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJP_MainTabVC.h; sourceTree = "<group>"; };
 		048E3D3C23B0AB72004C2DD5 /* DJP_MainNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJP_MainNavController.h; sourceTree = "<group>"; };
-		048E3D3E23B0AB72004C2DD5 /* MainTabVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabVC.m; sourceTree = "<group>"; };
+		048E3D3E23B0AB72004C2DD5 /* DJP_MainTabVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJP_MainTabVC.m; sourceTree = "<group>"; };
 		048E3D4323B0BC56004C2DD5 /* PPVideo_CoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPVideo_CoverView.h; sourceTree = "<group>"; };
 		048E3D4423B0BC56004C2DD5 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		048E3D4523B0BC56004C2DD5 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -418,10 +421,10 @@
 		04D4CEF1238D27B600B9E3D8 /* UNFileCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNFileCollectionViewController.h; sourceTree = "<group>"; };
 		04D4CEF3238D27B600B9E3D8 /* UNShowTypePopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNShowTypePopViewController.m; sourceTree = "<group>"; };
 		04D4CEF5238D27B600B9E3D8 /* UNCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNCollectionViewCell.h; sourceTree = "<group>"; };
-		04D4CEF6238D27B600B9E3D8 /* PopViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewCell.h; sourceTree = "<group>"; };
-		04D4CEF7238D27B600B9E3D8 /* PopViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopViewCell.xib; sourceTree = "<group>"; };
+		04D4CEF6238D27B600B9E3D8 /* DJPopViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJPopViewCell.h; sourceTree = "<group>"; };
+		04D4CEF7238D27B600B9E3D8 /* DJPopViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DJPopViewCell.xib; sourceTree = "<group>"; };
 		04D4CEF8238D27B600B9E3D8 /* UNCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNCollectionViewCell.m; sourceTree = "<group>"; };
-		04D4CEF9238D27B600B9E3D8 /* PopViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewCell.m; sourceTree = "<group>"; };
+		04D4CEF9238D27B600B9E3D8 /* DJPopViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJPopViewCell.m; sourceTree = "<group>"; };
 		04D4CEFB238D27B600B9E3D8 /* UNFileManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNFileManagerTool.m; sourceTree = "<group>"; };
 		04D4CEFC238D27B600B9E3D8 /* UNFileSystemHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNFileSystemHandle.m; sourceTree = "<group>"; };
 		04D4CEFD238D27B600B9E3D8 /* DJP_CellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DJP_CellModel.m; path = ../DJP_CellModel.m; sourceTree = "<group>"; };
@@ -778,29 +781,29 @@
 		046ADF96238CD5750098AF3F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				046ADF98238CD5E30098AF3F /* WiFiTransmitTableViewCell.h */,
-				046ADF99238CD5E30098AF3F /* WiFiTransmitTableViewCell.m */,
-				046ADF9A238CD5E30098AF3F /* WiFiTransmitTableViewCell.xib */,
-				046ADF9D238CF9750098AF3F /* TitleSwitchTableViewCell.h */,
-				046ADF9E238CF9750098AF3F /* TitleSwitchTableViewCell.m */,
-				046ADF9F238CF9750098AF3F /* TitleSwitchTableViewCell.xib */,
-				04561EF3238E4BE200B3D644 /* ImageTitleTableViewCell.h */,
-				04561EF4238E4BE200B3D644 /* ImageTitleTableViewCell.m */,
-				04561EF5238E4BE200B3D644 /* ImageTitleTableViewCell.xib */,
-				04561EFB238E6DB600B3D644 /* ImageListTableViewCell.h */,
-				04561EFC238E6DB600B3D644 /* ImageListTableViewCell.m */,
-				04561EFD238E6DB600B3D644 /* ImageListTableViewCell.xib */,
-				04561FA0238F67A900B3D644 /* SMBSection0TableViewCell.h */,
-				04561FA1238F67A900B3D644 /* SMBSection0TableViewCell.m */,
-				04561FA2238F67A900B3D644 /* SMBSection0TableViewCell.xib */,
-				04561FA5238F67C000B3D644 /* SMBSection1TableViewCell.h */,
-				04561FA6238F67C000B3D644 /* SMBSection1TableViewCell.m */,
-				04561FA7238F67C000B3D644 /* SMBSection1TableViewCell.xib */,
-				047C54CA238F9F5600029E36 /* SMBFileTootListTableViewCell.h */,
-				047C54CB238F9F5600029E36 /* SMBFileTootListTableViewCell.m */,
-				047C54CC238F9F5600029E36 /* SMBFileTootListTableViewCell.xib */,
-				047C54D82390C51200029E36 /* SecondHeaderView.h */,
-				047C54D92390C51200029E36 /* SecondHeaderView.m */,
+				046ADF98238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.h */,
+				046ADF99238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.m */,
+				046ADF9A238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.xib */,
+				046ADF9D238CF9750098AF3F /* DJTitleSwitchTableViewCell.h */,
+				046ADF9E238CF9750098AF3F /* DJTitleSwitchTableViewCell.m */,
+				046ADF9F238CF9750098AF3F /* DJTitleSwitchTableViewCell.xib */,
+				04561EF3238E4BE200B3D644 /* DJImageTitleTableViewCell.h */,
+				04561EF4238E4BE200B3D644 /* DJImageTitleTableViewCell.m */,
+				04561EF5238E4BE200B3D644 /* DJImageTitleTableViewCell.xib */,
+				04561EFB238E6DB600B3D644 /* DJImageListTableViewCell.h */,
+				04561EFC238E6DB600B3D644 /* DJImageListTableViewCell.m */,
+				04561EFD238E6DB600B3D644 /* DJImageListTableViewCell.xib */,
+				04561FA0238F67A900B3D644 /* DJSMBSection0TableViewCell.h */,
+				04561FA1238F67A900B3D644 /* DJSMBSection0TableViewCell.m */,
+				04561FA2238F67A900B3D644 /* DJSMBSection0TableViewCell.xib */,
+				04561FA5238F67C000B3D644 /* DJSMBSection1TableViewCell.h */,
+				04561FA6238F67C000B3D644 /* DJSMBSection1TableViewCell.m */,
+				04561FA7238F67C000B3D644 /* DJSMBSection1TableViewCell.xib */,
+				047C54CA238F9F5600029E36 /* DJSMBFileTootListTableViewCell.h */,
+				047C54CB238F9F5600029E36 /* DJSMBFileTootListTableViewCell.m */,
+				047C54CC238F9F5600029E36 /* DJSMBFileTootListTableViewCell.xib */,
+				047C54D82390C51200029E36 /* DJSecondHeaderView.h */,
+				047C54D92390C51200029E36 /* DJSecondHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -845,11 +848,11 @@
 		04732E1123B4D899001D8C64 /* DBModel */ = {
 			isa = PBXGroup;
 			children = (
-				04732E1223B4D899001D8C64 /* JKDBModel.m */,
-				04732E1323B4D899001D8C64 /* JKDBHelper.m */,
-				04732E1423B4D899001D8C64 /* JKDBModel.h */,
 				04732E1523B4D899001D8C64 /* FMDB */,
 				04732E2123B4D899001D8C64 /* JKDBHelper.h */,
+				04732E1323B4D899001D8C64 /* JKDBHelper.m */,
+				04732E1423B4D899001D8C64 /* JKDBModel.h */,
+				04732E1223B4D899001D8C64 /* JKDBModel.m */,
 			);
 			path = DBModel;
 			sourceTree = "<group>";
@@ -904,6 +907,8 @@
 				048E3BE923A9D779004C2DD5 /* UNWatchMovieOnlineViewController.m */,
 				04732E2923B4D8CD001D8C64 /* OnlineMarkModel.h */,
 				04732E2A23B4D8CD001D8C64 /* OnlineMarkModel.m */,
+				04732E2C23B60CDF001D8C64 /* OnlinePlayModel.h */,
+				04732E2D23B60CDF001D8C64 /* OnlinePlayModel.m */,
 				04732E0C23B4C954001D8C64 /* OnlineCollectionReusableView.h */,
 				04732E0D23B4C954001D8C64 /* OnlineCollectionReusableView.m */,
 				04732E0E23B4C954001D8C64 /* OnlineCollectionReusableView.xib */,
@@ -1044,8 +1049,8 @@
 				042F9B612284275300FF7F72 /* DJP_BaseViewController.m */,
 				048E3D3C23B0AB72004C2DD5 /* DJP_MainNavController.h */,
 				048E3D3923B0AB72004C2DD5 /* DJP_MainNavController.m */,
-				048E3D3B23B0AB72004C2DD5 /* MainTabVC.h */,
-				048E3D3E23B0AB72004C2DD5 /* MainTabVC.m */,
+				048E3D3B23B0AB72004C2DD5 /* DJP_MainTabVC.h */,
+				048E3D3E23B0AB72004C2DD5 /* DJP_MainTabVC.m */,
 			);
 			name = BaseMainTabbar;
 			path = UncompressTeam/BaseClass/Base/BaseMainTabbar;
@@ -1091,9 +1096,9 @@
 			children = (
 				04D4CEF5238D27B600B9E3D8 /* UNCollectionViewCell.h */,
 				04D4CEF8238D27B600B9E3D8 /* UNCollectionViewCell.m */,
-				04D4CEF6238D27B600B9E3D8 /* PopViewCell.h */,
-				04D4CEF9238D27B600B9E3D8 /* PopViewCell.m */,
-				04D4CEF7238D27B600B9E3D8 /* PopViewCell.xib */,
+				04D4CEF6238D27B600B9E3D8 /* DJPopViewCell.h */,
+				04D4CEF9238D27B600B9E3D8 /* DJPopViewCell.m */,
+				04D4CEF7238D27B600B9E3D8 /* DJPopViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1232,15 +1237,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				04732E1023B4C954001D8C64 /* OnlineCollectionReusableView.xib in Resources */,
-				047C54CE238F9F5600029E36 /* SMBFileTootListTableViewCell.xib in Resources */,
+				047C54CE238F9F5600029E36 /* DJSMBFileTootListTableViewCell.xib in Resources */,
 				048E3C2E23AA3791004C2DD5 /* 示例视频2.mp4 in Resources */,
 				04553D5323B1E67700EAAFEA /* DJP_ChangePasswordViewController.xib in Resources */,
 				04553D7523B215CD00EAAFEA /* PayHeadView.xib in Resources */,
 				048E3C2C23AA3791004C2DD5 /* iTunes传输教程.png in Resources */,
-				04561FA9238F67C000B3D644 /* SMBSection1TableViewCell.xib in Resources */,
+				04561FA9238F67C000B3D644 /* DJSMBSection1TableViewCell.xib in Resources */,
 				047D1CE5238FA62000F9E494 /* UNPhotoCell.xib in Resources */,
 				04553D5723B1E67700EAAFEA /* DJP_LoginViewController.xib in Resources */,
-				04561FA4238F67A900B3D644 /* SMBSection0TableViewCell.xib in Resources */,
+				04561FA4238F67A900B3D644 /* DJSMBSection0TableViewCell.xib in Resources */,
 				04553D5E23B1F2C600EAAFEA /* SetTableViewCell.xib in Resources */,
 				042F9B132284168800FF7F72 /* Assets.xcassets in Resources */,
 				04553D6523B20CE800EAAFEA /* DJer_PaySection2TableVCell.xib in Resources */,
@@ -1254,15 +1259,15 @@
 				048E3C1423AA170E004C2DD5 /* DJP_AdviceViewController.xib in Resources */,
 				048E3C3E23AA3D52004C2DD5 /* server.html in Resources */,
 				048E3C1623AA170E004C2DD5 /* DJP_AboutUsViewController.xib in Resources */,
-				046ADF9C238CD5E30098AF3F /* WiFiTransmitTableViewCell.xib in Resources */,
-				04D4CF09238D27B600B9E3D8 /* PopViewCell.xib in Resources */,
+				046ADF9C238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.xib in Resources */,
+				04D4CF09238D27B600B9E3D8 /* DJPopViewCell.xib in Resources */,
 				04553D5623B1E67700EAAFEA /* DJP_RegisterViewController.xib in Resources */,
 				04553D3E23B1CA7600EAAFEA /* VVServer.html in Resources */,
 				04732E0B23B4B889001D8C64 /* OnlineCollectionCell.xib in Resources */,
-				04561EF7238E4BE200B3D644 /* ImageTitleTableViewCell.xib in Resources */,
+				04561EF7238E4BE200B3D644 /* DJImageTitleTableViewCell.xib in Resources */,
 				048E3C2B23AA3791004C2DD5 /* 示例文档.txt in Resources */,
-				046ADFA1238CF9750098AF3F /* TitleSwitchTableViewCell.xib in Resources */,
-				04561EFF238E6DB600B3D644 /* ImageListTableViewCell.xib in Resources */,
+				046ADFA1238CF9750098AF3F /* DJTitleSwitchTableViewCell.xib in Resources */,
+				04561EFF238E6DB600B3D644 /* DJImageListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,7 +1342,7 @@
 				04553D4423B1E50A00EAAFEA /* DJP_UserCenter.m in Sources */,
 				048E3D3223ACD54C004C2DD5 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
 				04D4CEC1238BDFD000B9E3D8 /* UNMoreSettingViewController.m in Sources */,
-				04561FA8238F67C000B3D644 /* SMBSection1TableViewCell.m in Sources */,
+				04561FA8238F67C000B3D644 /* DJSMBSection1TableViewCell.m in Sources */,
 				04561EFA238E675100B3D644 /* UNImageListViewController.m in Sources */,
 				04D4CF10238D27B600B9E3D8 /* DJP_DataModel.m in Sources */,
 				048E3C2423AA31EE004C2DD5 /* DJP_SettingViewController.m in Sources */,
@@ -1353,19 +1358,19 @@
 				04561F93238F649100B3D644 /* SMBShare.m in Sources */,
 				04561FAC238F681F00B3D644 /* UNSMBViewController.m in Sources */,
 				04553D5423B1E67700EAAFEA /* DJP_RegisterViewController.m in Sources */,
-				047C54CD238F9F5600029E36 /* SMBFileTootListTableViewCell.m in Sources */,
+				047C54CD238F9F5600029E36 /* DJSMBFileTootListTableViewCell.m in Sources */,
 				04553D5D23B1F2C600EAAFEA /* SetTableViewCell.m in Sources */,
 				04561EEF238E185900B3D644 /* DJP_Document.m in Sources */,
-				047C54DA2390C51200029E36 /* SecondHeaderView.m in Sources */,
-				048E3D4123B0AB73004C2DD5 /* MainTabVC.m in Sources */,
+				047C54DA2390C51200029E36 /* DJSecondHeaderView.m in Sources */,
+				048E3D4123B0AB73004C2DD5 /* DJP_MainTabVC.m in Sources */,
 				048E3D3323ACD54C004C2DD5 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				048E3C1223AA170E004C2DD5 /* DJP_AboutUsViewController.m in Sources */,
-				04561FA3238F67A900B3D644 /* SMBSection0TableViewCell.m in Sources */,
+				04561FA3238F67A900B3D644 /* DJSMBSection0TableViewCell.m in Sources */,
 				04553D6A23B212C800EAAFEA /* payTopTableViewCell.m in Sources */,
 				04732E2523B4D899001D8C64 /* FMDatabaseAdditions.m in Sources */,
 				04732E2723B4D899001D8C64 /* FMDatabasePool.m in Sources */,
 				04732DFE23B386A8001D8C64 /* AVPlayerItem+Hook.m in Sources */,
-				046ADF9B238CD5E30098AF3F /* WiFiTransmitTableViewCell.m in Sources */,
+				046ADF9B238CD5E30098AF3F /* DJWiFiTransmitTableViewCell.m in Sources */,
 				04553D5823B1E67700EAAFEA /* DJP_LoginViewController.m in Sources */,
 				04561EE7238D0C3400B3D644 /* NSString+Hash.m in Sources */,
 				04D4CF08238D27B600B9E3D8 /* UNShowTypePopViewController.m in Sources */,
@@ -1380,26 +1385,27 @@
 				04561F96238F649100B3D644 /* SMBDiscovery.m in Sources */,
 				0431CB17237E598D00CCE626 /* PayHelp.m in Sources */,
 				048E3D3023ACD54C004C2DD5 /* GCDWebServerDataResponse.m in Sources */,
-				046ADFA0238CF9750098AF3F /* TitleSwitchTableViewCell.m in Sources */,
+				046ADFA0238CF9750098AF3F /* DJTitleSwitchTableViewCell.m in Sources */,
 				04732E2223B4D899001D8C64 /* JKDBModel.m in Sources */,
 				048E3D2D23ACD54C004C2DD5 /* GCDWebServerConnection.m in Sources */,
 				04732E2423B4D899001D8C64 /* FMDatabaseQueue.m in Sources */,
 				047C54D72390BBD500029E36 /* PayViewController.m in Sources */,
 				047C54C5238F822800029E36 /* DJP_SMBManager.m in Sources */,
 				04732E2B23B4D8CD001D8C64 /* OnlineMarkModel.m in Sources */,
-				04561EF6238E4BE200B3D644 /* ImageTitleTableViewCell.m in Sources */,
+				04561EF6238E4BE200B3D644 /* DJImageTitleTableViewCell.m in Sources */,
 				047D1CE3238FA62000F9E494 /* UNPhotoCell.m in Sources */,
 				04553D8523B317B600EAAFEA /* PDProtolVC.m in Sources */,
-				04D4CF0B238D27B600B9E3D8 /* PopViewCell.m in Sources */,
+				04D4CF0B238D27B600B9E3D8 /* DJPopViewCell.m in Sources */,
 				04553D5523B1E67700EAAFEA /* DJP_SearviceViewController.m in Sources */,
 				04D4CF0E238D27B600B9E3D8 /* DJP_CellModel.m in Sources */,
+				04732E2E23B60CE0001D8C64 /* OnlinePlayModel.m in Sources */,
 				043BC6CE2361AF5F00BBF43A /* AppDelegate.m in Sources */,
 				048E3D3F23B0AB73004C2DD5 /* DJP_MainNavController.m in Sources */,
 				048E3D4823B0BC56004C2DD5 /* PPVideo_CoverView.m in Sources */,
 				04732E0F23B4C954001D8C64 /* OnlineCollectionReusableView.m in Sources */,
 				04553D7323B215B600EAAFEA /* PayHeadView.m in Sources */,
 				048E3BF223A9D8E7004C2DD5 /* UNHistoryTableViewCell.m in Sources */,
-				04561EFE238E6DB600B3D644 /* ImageListTableViewCell.m in Sources */,
+				04561EFE238E6DB600B3D644 /* DJImageListTableViewCell.m in Sources */,
 				04561F90238F649100B3D644 /* SMBFileServer.m in Sources */,
 				04561F92238F649100B3D644 /* SMBFile.m in Sources */,
 				048E3D3723ACD54C004C2DD5 /* GCDWebUploader.m in Sources */,
